@@ -1,0 +1,5 @@
+.fontSize(@n, @px) when (@n < 30){
+  .f-@{n}{font-size: @px;}
+  .fontSize(@n + 1, @px + 1);
+}
+.fontSize(12, 12px);

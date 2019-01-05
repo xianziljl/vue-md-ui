@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <div style="display:none;">
       <m-button>Normal</m-button>
       <m-button type="primary">Primary</m-button>
       <m-button type="warning">Warning</m-button>
@@ -28,7 +28,7 @@
       <m-button size="small">Small</m-button>
       <m-button size="small" type="primary" outline>
         <m-icon>delete</m-icon>
-        <span>Icon</span>
+        <span>图标</span>
       </m-button>
       <br>
       <m-button>
@@ -43,6 +43,11 @@
       </m-button>
       <m-button size="large" type="primary">Large</m-button>
     </div>
+    <div>
+      <m-input label="姓名"></m-input><br>
+      <m-input box label="姓名"></m-input><br>
+      <m-input outline label="户籍所在地"></m-input>
+    </div>
     <!-- <m-icon size="20">delete</m-icon> -->
   </div>
 </template>
@@ -50,4 +55,5 @@
 <style lang="less">
 body{margin: 0;padding: 30px;font-size: 14px;}
 .m-button{margin: 5px;vertical-align: middle;}
+.m-input{margin: 5px;width: 300px;}
 </style>
