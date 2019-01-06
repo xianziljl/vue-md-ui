@@ -33,7 +33,7 @@ export default {
 
 <style lang="less">
 .m-button{
-  @normal-bg: rgba(0, 0, 0, .1);
+  @normal-bg: rgba(0, 0, 0, .07);
   @dark-hover: rgba(0, 0, 0, .2);
   @light-hover: rgba(255, 255, 255, .1);
   @ripple: m-ripple-animation;
@@ -42,7 +42,7 @@ export default {
   }
   position: relative;display: inline-flex;align-items: center;justify-content: center;color: @text-color;
   height: 34px;line-height: 1em;padding: 0 15px;font-size: @font-size;cursor: pointer;border-radius: 4px;
-  outline: none;background: @normal-bg;overflow: hidden;border: none;
+  outline: none;background: @normal-bg;overflow: hidden;border: none;vertical-align: middle;
   transition: background-color .3s, border-color .3s, box-shadow .3s;white-space: nowrap;
   &[disabled]{opacity: .6;cursor: default;pointer-events: none;}
   &:hover{.shadow(@dark-hover);}
@@ -61,7 +61,7 @@ export default {
 
   &-flat, &-outline{
     background: transparent;
-    &:hover{box-shadow: none;background: @normal-bg;}
+    &:hover{box-shadow: none;background: fadeout(@normal-bg, 2%);}
     &.m-button{
       &-primary{color: @primary-color;}
       &-primary:hover{background: fadeout(@primary-color, 95%);box-shadow: none;}
@@ -79,12 +79,12 @@ export default {
       &-denger:hover{border-color: fadeout(@denger-color, 80%);}
     }
   }
-  .m-icon{font-size: 18px;vertical-align: sub;}
+  .material-icons{font-size: 18px;vertical-align: sub;}
   &-large{height: 40px;padding: 0 20px;font-size: 1.1em;
-    .m-icon{font-size: 24px;}
+    .material-icons{font-size: 24px;}
   }
   &-small{height: 28px;padding: 0 10px;font-size: 0.8em;
-    .m-icon{font-size: 16px;}
+    .material-icons{font-size: 16px;}
   }
   &-primary, &-warning, &-denger{
     .@{ripple}{background: fadein(@light-hover, 10%);}
