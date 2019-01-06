@@ -1,6 +1,7 @@
 <template>
 <i
-  class="m-icon"
+  class="material-icons"
+  v-on="$listeners"
   :style="size ? {fontSize: `${size}px`} : ''">
   <slot></slot>
 </i>
@@ -16,7 +17,5 @@ export default {
 </script>
 
 <style lang="less">
-.m-icon{
-  //
-}
+.material-icons{transition: color .2s;user-select: none;}
 </style>
