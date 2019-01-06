@@ -1,24 +1,30 @@
 
 function showRipple (e) {
   e = e.touches ? e.touches[0] : e
-  const el = e.currentTarget
+  const el = e.currentTarget || e.target
   const container = document.createElement('span')
   const animation = document.createElement('span')
   container.appendChild(animation)
   container.className = 'm-ripple-container'
   animation.className = 'm-ripple-animation'
-  const offset = el.getBoundingClientRect()
-  const w = el.clientWidth
-  const h = el.clientHeight
-  const d = w > h ? w : h // 直径
-  const x = e.clientX - offset.left
-  const y = e.clientY - offset.top // -(d - w) / 2
+  let x, y, d, w, h
+  if (el.getAttribute('data-ripple-center')) {
+    container.className = 'm-ripple-container m-ripple-container-center'
+    w = h = d = 40
+    x = y = 20
+  } else {
+    const offset = el.getBoundingClientRect()
+    w = el.clientWidth
+    h = el.clientHeight
+    d = w > h ? w : h // 直径
+    x = e.clientX - offset.left
+    y = e.clientY - offset.top // -(d - w) / 2
+  }
   animation.setAttribute('style', `width: ${d}px;height: ${d}px;left: ${x}px;top: ${y}px;margin-left:${-d / 2}px;margin-top:${-d / 2}px;`)
   el.appendChild(container)
   setTimeout(() => { animation.className = 'm-ripple-animation m-ripple-show' }, 5)
-  setTimeout(() => { animation.className = 'm-ripple-animation m-ripple-show m-ripple-hide' }, 305)
-  setTimeout(() => { animation.className = 'm-ripple-animation m-ripple-show m-ripple-hide' }, 310)
-  setTimeout(() => { el.removeChild(container) }, 620)
+  setTimeout(() => { animation.className = 'm-ripple-animation m-ripple-show m-ripple-hide' }, 400)
+  setTimeout(() => { el.removeChild(container) }, 700)
 }
 
 const Ripple = {
