@@ -1,4 +1,3 @@
-
 function showRipple (e) {
   e = e.touches ? e.touches[0] : e
   const el = e.currentTarget || e.target
@@ -14,6 +13,8 @@ function showRipple (e) {
     x = y = 20
   } else {
     const offset = el.getBoundingClientRect()
+    const borderRadius = getComputedStyle(el).borderRadius
+    container.setAttribute('style', `border-radius: ${borderRadius}`)
     w = el.clientWidth
     h = el.clientHeight
     d = w > h ? w : h // 直径
