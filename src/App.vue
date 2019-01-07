@@ -93,16 +93,37 @@
       <m-avatar size="60" style="background: cornflowerblue;color: #fff;">张</m-avatar>
     </div> -->
     <div>
-      <m-input v-model="input" outline label="Please input something"></m-input>
-      <div>{{input}}</div>
-      <m-checkbox>同意用户协议</m-checkbox>
+      <m-input v-model="input" outline label="毕业院校" prefix-icon="school" style="margin: 10px 0;"></m-input>
+      <br>
+      <!-- <m-checkbox>同意用户协议</m-checkbox>
       <m-checkbox v-model="checkbox" value="agree">同意用户协议</m-checkbox>
-      <m-checkbox v-model="checkbox" disabled>禁用</m-checkbox>
-      <m-checkbox-group v-model="checkboxgroup">
-        <m-checkbox value="beijing">北京</m-checkbox><br>
-        <m-checkbox value="shanghai">上海</m-checkbox><br>
+      <m-checkbox v-model="checkbox" disabled>禁用</m-checkbox> -->
+
+      <div>
+        <m-checkbox>北京</m-checkbox>
+        <m-checkbox checked>上海</m-checkbox>
+        <m-checkbox disabled>广州</m-checkbox>
+        <m-checkbox disabled checked>深圳</m-checkbox>
+      </div>
+      <m-checkbox-group v-model="checkboxgroup" style="margin-top: 10px;">
+        <m-checkbox value="beijing">北京</m-checkbox>
+        <m-checkbox value="shanghai">上海</m-checkbox>
         <m-checkbox value="shenzhen">深圳</m-checkbox>
+        <m-checkbox value="guangzhou">广州</m-checkbox>
+        <span>{{checkboxgroup}}</span>
       </m-checkbox-group>
+      <div style="margin-top: 10px;">
+        <m-radio>北京</m-radio>
+        <m-radio checked>上海</m-radio>
+        <m-radio disabled>广州</m-radio>
+        <m-radio disabled checked>深圳</m-radio>
+      </div>
+      <m-radio-group style="margin-top: 10px;">
+        <m-radio value="beijing">北京</m-radio>
+        <m-radio value="shanghai">上海</m-radio>
+        <m-radio value="shenzhen">深圳</m-radio>
+        <m-radio value="guangzhou">广州</m-radio>
+      </m-radio-group>
     </div>
   </div>
 </template>
@@ -116,6 +137,7 @@ export default {
       showPwd: false,
       tab: '1',
       checkbox: true,
+      radio: false,
       checkboxgroup: [],
       rules: [
         val => val.length >= 6 || '密码长度最少六位',
@@ -131,4 +153,5 @@ body{margin: 0;padding: 30px;font-size: 14px;}
 .m-button{margin: 5px;}
 .m-input{margin: 0 5px;width: 300px;}
 .m-avatar{margin: 10px;}
+.m-checkbox, .m-radio{margin-right: 10px;}
 </style>

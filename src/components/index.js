@@ -5,6 +5,7 @@ import Vue from 'vue'
 
 import Button from './input/button'
 import Checkbox from './input/checkbox'
+import Radio from './input/radio'
 import Input from './input/input'
 import Icon from './display/icon'
 import Card from './display/card'
@@ -18,3 +19,4 @@ Vue.use(Icon)
 Vue.use(Card)
 Vue.use(Tabs)
 Vue.use(Checkbox)
+Vue.use(Radio)

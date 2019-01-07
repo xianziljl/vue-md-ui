@@ -1,7 +1,11 @@
-import MRadio from './radio.vue'
+import MRadio from './radio'
+import MRadioGroup from './radio-group'
 
-MRadio.install = function (Vue) {
+const radio = {}
+
+radio.install = function (Vue) {
+  Vue.component(MRadioGroup.name, MRadioGroup)
   Vue.component(MRadio.name, MRadio)
 }
 
-export default MRadio
+export default radio
