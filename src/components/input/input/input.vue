@@ -31,7 +31,7 @@
       <input
         v-bind="$attrs"
         v-on="listeners"
-        :value="value"
+        :value="val"
         :disabled="disabled"
         :placeholder="singleLine ? label : ''">
     </div>
@@ -96,17 +96,23 @@ export default {
   },
   data () {
     return {
+      val: '',
       isFocus: false,
       labelLeft: 0,
       status: 'normal', // normal, error
       message: ''
     }
   },
+  watch: {
+    value (val) {
+      this.val = val
+    }
+  },
   computed: {
     labelTransform () {
-      if (!(this.isFocus || this.value)) return ''
+      if (!(this.isFocus || this.val)) return ''
       const input = this.$el.querySelector('.m-input-box')
-      return `translate3d(${-(this.outline ? input.offsetLeft - 10 : input.offsetLeft)}px, -21px, 0) scale(0.88)`
+      return `translate3d(${-(this.outline ? input.offsetLeft - 5 : input.offsetLeft)}px, -21px, 0) scale(0.88)`
     },
     listeners () {
       const vm = this
@@ -126,14 +132,17 @@ export default {
   },
   methods: {
     clear () {
+      this.val = ''
       this.$emit('input', '')
     },
     onInput (e) {
+      this.val = e.target.value
       this.$emit('input', e.target.value)
       if (!this.rules || !this.checkOnInput) return
       this.ruleCheck(e.target.value)
     },
     onChange (e) {
+      this.val = e.target.value
       this.$emit('change', e.target.value)
       if (this.rules) this.ruleCheck(e.target.value)
     },
