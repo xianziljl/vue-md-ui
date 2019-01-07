@@ -112,7 +112,7 @@ export default {
     labelTransform () {
       if (!(this.isFocus || this.val)) return ''
       const input = this.$el.querySelector('.m-input-box')
-      return `translate3d(${-(this.outline ? input.offsetLeft - 5 : input.offsetLeft)}px, -21px, 0) scale(0.88)`
+      return `translate3d(${-(this.outline ? input.offsetLeft - 10 : input.offsetLeft)}px, -21px, 0) scale(0.88)`
     },
     listeners () {
       const vm = this
@@ -201,8 +201,9 @@ export default {
   }
   &-outline{
     padding-top: 10px;
+    input{padding: 0 3px;}
     .m-input-container{height: 42px;padding: 0 10px;border: 1px solid @border-color;border-radius: 5px;background: #fff;}
-    .m-input-label{height: 20px;top: 6px;padding: 0 5px;border-radius: 5px;}
+    .m-input-label{height: 20px;top: 6px;padding: 0 3px;border-radius: 4px;}
     .m-input-label-transform{background: #fff;}
   }
   &-disabled{
