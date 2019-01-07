@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div style="display:;">
+    <!-- <div style="display:;">
       <m-button>Normal</m-button>
       <m-button type="primary">Primary</m-button>
       <m-button type="warning">Warning</m-button>
@@ -42,9 +42,9 @@
         <span>Icon Large</span>
       </m-button>
       <m-button size="large" type="primary">Large</m-button>
-    </div>
-    <div style="display:;">
-      <!-- <m-input v-model="input" type="number" label="数字输入"></m-input><br>
+    </div> -->
+    <!-- <div style="display:;">
+      <m-input v-model="input" type="number" label="数字输入"></m-input><br>
       <m-input v-model="input" disabled label="户籍所在地"></m-input><br>
       <m-input v-model="input" single-line label="户籍所在地"></m-input><br>
       <m-input v-model="input" prefix="https://" label="链接地址" hint-on-demand hint="请真实填写"></m-input><br>
@@ -63,13 +63,12 @@
         label="密码"
         hint="六位以上字符，包含数字、字母、特殊符号"
         counter
-        check-on-input
         :rules="rules"
         @click:suffix-icon="showPwd = !showPwd"
-      ></m-input><br> -->
-    </div>
-    <div>
-      <!-- <m-tabs v-model="tab">
+      ></m-input><br>
+    </div> -->
+    <!-- <div>
+      <m-tabs v-model="tab">
         <m-tab value="1">全部歌曲</m-tab>
         <m-tab value="2">
           <m-icon size="18" style="margin-right: 5px;">album</m-icon>
@@ -85,16 +84,25 @@
         <m-tab value="7">播放队列</m-tab>
         <m-tab value="8">设置</m-tab>
         <m-tab value="9">帮助</m-tab>
-      </m-tabs> -->
-    </div>
-    <div>
-      <!-- <m-avatar title="jobs" src="https://avatar-static.segmentfault.com/926/875/926875938-55a5d4a536394_huge256"></m-avatar>
+      </m-tabs>
+    </div> -->
+    <!-- <div>
+      <m-avatar title="jobs" src="https://avatar-static.segmentfault.com/926/875/926875938-55a5d4a536394_huge256"></m-avatar>
       <m-avatar square src="https://avatar-static.segmentfault.com/926/875/926875938-55a5d4a536394_huge256"></m-avatar>
       <m-avatar size="80">U</m-avatar>
-      <m-avatar size="60" style="background: cornflowerblue;color: #fff;">张</m-avatar> -->
-    </div>
+      <m-avatar size="60" style="background: cornflowerblue;color: #fff;">张</m-avatar>
+    </div> -->
     <div>
-      <m-checkbox checked></m-checkbox>
+      <m-input v-model="input" outline label="Please input something"></m-input>
+      <div>{{input}}</div>
+      <m-checkbox>同意用户协议</m-checkbox>
+      <m-checkbox v-model="checkbox" value="agree">同意用户协议</m-checkbox>
+      <m-checkbox v-model="checkbox" disabled>禁用</m-checkbox>
+      <m-checkbox-group v-model="checkboxgroup">
+        <m-checkbox value="beijing">北京</m-checkbox><br>
+        <m-checkbox value="shanghai">上海</m-checkbox><br>
+        <m-checkbox value="shenzhen">深圳</m-checkbox>
+      </m-checkbox-group>
     </div>
   </div>
 </template>
@@ -107,7 +115,8 @@ export default {
       ruleTest: '',
       showPwd: false,
       tab: '1',
-      checkbox: '',
+      checkbox: true,
+      checkboxgroup: [],
       rules: [
         val => val.length >= 6 || '密码长度最少六位',
         val => val.length <= 10 || '密码长度最大十位'

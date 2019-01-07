@@ -1,7 +1,7 @@
 <template>
   <div
     class="m-avatar"
-    :title="name"
+    :title="alt"
     :style="size ? {
       width: `${size}px`,
       height: `${size}px`

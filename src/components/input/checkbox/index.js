@@ -1,7 +1,11 @@
 import MCheckbox from './checkbox.vue'
+import MCheckboxGroup from './checkbox-group.vue'
 
-MCheckbox.install = function (Vue) {
+const checkbox = {}
+
+checkbox.install = function (Vue) {
   Vue.component(MCheckbox.name, MCheckbox)
+  Vue.component(MCheckboxGroup.name, MCheckboxGroup)
 }
 
-export default MCheckbox
+export default checkbox

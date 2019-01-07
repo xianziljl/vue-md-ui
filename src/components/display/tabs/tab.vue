@@ -18,6 +18,7 @@ export default {
   computed: {
     parentValue () {
       const value = this.getValue()
+      // 在用户手动修改 v-model 值时更新
       if (this.$el && value === this.value) this.onClick()
       return value
     }
