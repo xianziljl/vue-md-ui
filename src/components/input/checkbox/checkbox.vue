@@ -33,16 +33,20 @@ export default {
       isChecked: this.checked || false
     }
   },
+  created () {
+    if (!this.checkboxGroupValue) return
+    if (this.checkboxGroupValue.includes(this.value)) this.isChecked = true
+  },
   watch: {
     checked (val) {
       this.isChecked = val
     }
   },
-  // inject: {
-  //   checkboxGroupValue: {
-  //     default: []
-  //   }
-  // },
+  inject: {
+    checkboxGroupValue: {
+      default: null
+    }
+  },
   computed: {
     listeners () {
       const vm = this
@@ -54,6 +58,12 @@ export default {
   methods: {
     onChange (e) {
       this.isChecked = e.target.checked
+      const { checkboxGroupValue, value } = this
+      if (checkboxGroupValue) {
+        const index = checkboxGroupValue.indexOf(value)
+        if (index < 0) checkboxGroupValue.push(value)
+        else checkboxGroupValue.splice(index, 1)
+      }
       this.$emit('change', e.target.checked)
     }
   }
@@ -62,11 +72,12 @@ export default {
 
 <style lang="less">
 .m-checkbox{
+  @icon-color: rgba(0,0,0,.5);
   display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;
   input{display: none;}
   &-label{margin-left: 8px;}
   &-icon{
-    position: relative;display: inline-block;width: 16px;height: 16px;border: 2px solid #888;border-radius: 2px;
+    position: relative;display: inline-block;width: 16px;height: 16px;border: 2px solid @icon-color;border-radius: 2px;
     vertical-align: middle;transition: all .3s;
     &:after{
       content: '';display: block;position: absolute;left: 1px;top: 2px;width: 8px;height: 4px;border: 2px solid #fff;
@@ -81,7 +92,9 @@ export default {
     }
     .m-ripple-animation{background: fadeout(@primary-color, 80%);}
   }
-  &-disabled &-icon{border-color: #aaa;}
-  &-disabled&-checked &-icon{border-color: transparent;background: fadeout(@primary-color, 30%);}
+  &-disabled{cursor: default;}
+  &-disabled &-icon{border-color: fadeout(@icon-color, 30%);}
+  &-disabled .m-ripple-animation{display: none;}
+  &-disabled&-checked &-icon{border-color: transparent;background: fadeout(@icon-color, 30%);}
 }
 </style>
