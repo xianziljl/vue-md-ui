@@ -1,6 +1,7 @@
 <template>
 <label
   class="m-checkbox"
+  v-ripple.center="'.m-checkbox-icon'"
   :class="{
     'm-checkbox-checked': isChecked,
     'm-checkbox-disabled': $attrs.disabled !== undefined
@@ -10,7 +11,7 @@
     v-bind="$attrs"
     :checked="isChecked"
     v-on="listeners">
-  <div class="m-checkbox-icon" v-ripple.center></div>
+  <div class="m-checkbox-icon"></div>
   <span v-if="$slots.default" class="m-checkbox-label">
     <slot></slot>
   </span>
@@ -34,16 +35,19 @@ export default {
     }
   },
   created () {
-    if (!this.checkboxGroupValue) return
-    if (this.checkboxGroupValue.includes(this.value)) this.isChecked = true
+    if (!this.checkboxGroup) return
+    this.isChecked = this.checkboxGroup.value.includes(this.value)
   },
   watch: {
     checked (val) {
       this.isChecked = val
+    },
+    'checkboxGroup.value' (val) {
+      this.isChecked = this.checkboxGroup.value.includes(this.value)
     }
   },
   inject: {
-    checkboxGroupValue: {
+    checkboxGroup: {
       default: null
     }
   },
@@ -58,11 +62,11 @@ export default {
   methods: {
     onChange (e) {
       this.isChecked = e.target.checked
-      const { checkboxGroupValue, value } = this
-      if (checkboxGroupValue) {
-        const index = checkboxGroupValue.indexOf(value)
-        if (index < 0) checkboxGroupValue.push(value)
-        else checkboxGroupValue.splice(index, 1)
+      const { checkboxGroup, value } = this
+      if (checkboxGroup) {
+        const index = checkboxGroup.value.indexOf(value)
+        if (index < 0) checkboxGroup.value.push(value)
+        else checkboxGroup.value.splice(index, 1)
       }
       this.$emit('change', e.target.checked)
     }

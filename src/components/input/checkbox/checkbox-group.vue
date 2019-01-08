@@ -15,7 +15,7 @@ export default {
   },
   provide () {
     return {
-      checkboxGroupValue: this.value
+      checkboxGroup: this
     }
   }
 }
