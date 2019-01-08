@@ -1,13 +1,15 @@
 function showRipple (e) {
   e = e.touches ? e.touches[0] : e
-  const el = e.currentTarget || e.target
+  const rootEl = e.currentTarget || e.target
+  const selector = rootEl.getAttribute('data-ripple-selector')
+  const el = rootEl.querySelector(selector) || rootEl
   const container = document.createElement('span')
   const animation = document.createElement('span')
   container.appendChild(animation)
   container.className = 'm-ripple-container'
   animation.className = 'm-ripple-animation'
   let x, y, d, w, h
-  if (el.getAttribute('data-ripple-center')) {
+  if (rootEl.getAttribute('data-ripple-center')) {
     container.className = 'm-ripple-container m-ripple-container-center'
     w = h = d = 40
     x = y = 20
@@ -31,7 +33,8 @@ function showRipple (e) {
 const Ripple = {
   install (Vue, options) {
     Vue.directive('ripple', {
-      bind (el, { modifiers }, vnode, oldVnode) {
+      bind (el, { modifiers, value }, vnode, oldVnode) {
+        if (value && typeof value === 'string') el.setAttribute('data-ripple-selector', value)
         for (let key in modifiers) el.setAttribute(`data-ripple-${key}`, true)
         el.addEventListener('mousedown', showRipple, false)
         el.addEventListener('touchstart', showRipple, false)
