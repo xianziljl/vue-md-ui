@@ -13,9 +13,6 @@
           :style="{left: `${sliderLeft}px`, width: `${sliderWidth}px`}"></div>
       </div>
     </div>
-    <div class="m-tabs-items">
-      <!--  -->
-    </div>
   </div>
 </template>
 
