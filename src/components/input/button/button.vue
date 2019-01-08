@@ -8,7 +8,9 @@
     {
       'm-button-flat': flat,
       'm-button-round': round,
-      'm-button-outline': outline
+      'm-button-outline': outline,
+      'm-button-icon': icon,
+      'm-button-loading': loading
     }
   ]"
   v-bind="$attrs"
@@ -26,7 +28,9 @@ export default {
     size: String, // normal, small, large; default: normal
     flat: Boolean,
     round: Boolean,
-    outline: Boolean
+    outline: Boolean,
+    icon: Boolean, // 作为 icon button 使用
+    loading: Boolean
   }
 }
 </script>
@@ -95,6 +99,15 @@ export default {
       &-warning .@{ripple}{background: fadeout(@warning-color, 80%);}
       &-denger .@{ripple}{background: fadeout(@denger-color, 80%);}
     }
+  }
+  &-icon{padding: 0;width: 32px;height: 32px;
+    .material-icons{font-size: 20px;}
+  }
+  &-small&-icon{width: 28px;height: 28px;
+    .material-icons{font-size: 18px;}
+  }
+  &-large&-icon{width: 40px;height: 40px;
+    .material-icons{font-size: 24px;}
   }
 }
 </style>
