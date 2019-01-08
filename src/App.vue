@@ -42,6 +42,13 @@
         <span>Icon Large</span>
       </m-button>
       <m-button size="large" type="primary">Large</m-button>
+      <m-button icon round size="small"><m-icon>delete</m-icon></m-button>
+      <m-button icon round><m-icon>delete</m-icon></m-button>
+      <m-button icon round size="large"><m-icon>delete</m-icon></m-button>
+      <m-button icon round type="primary"><m-icon>delete</m-icon></m-button>
+      <m-button icon round flat type="primary"><m-icon>delete</m-icon></m-button>
+      <m-button icon round outline type="denger"><m-icon>delete</m-icon></m-button>
+      <m-button icon type="primary"><m-icon>delete</m-icon></m-button>
     </div> -->
     <!-- <div style="display:;">
       <m-input v-model="input" type="number" label="数字输入"></m-input><br>
@@ -69,41 +76,35 @@
     </div> -->
     <!-- <div>
       <m-tabs v-model="tab">
-        <m-tab value="1">全部歌曲</m-tab>
-        <m-tab value="2">
-          <m-icon size="18" style="margin-right: 5px;">album</m-icon>
-          <span>专辑</span>
-        </m-tab>
-        <m-tab value="3">
-          <m-icon size="20" style="margin-right: 5px;">people</m-icon>
-          <span>艺术家</span>
-        </m-tab>
-        <m-tab value="4">播放列表</m-tab>
-        <m-tab value="5">流派</m-tab>
-        <m-tab value="6">文件夹</m-tab>
-        <m-tab value="7">播放队列</m-tab>
-        <m-tab value="8">设置</m-tab>
-        <m-tab value="9">帮助</m-tab>
+        <m-tab value="1">艺术家</m-tab>
+        <m-tab value="2">专辑</m-tab>
+        <m-tab value="3">播放列表</m-tab>
       </m-tabs>
+      <m-tab-items keep-alive v-model="tab">
+        <m-tab-item value="1">艺术家<br>测试</m-tab-item>
+        <m-tab-item value="2">专辑</m-tab-item>
+        <m-tab-item value="3">播放列表</m-tab-item>
+      </m-tab-items>
     </div> -->
     <!-- <div>
       <m-avatar title="jobs" src="https://avatar-static.segmentfault.com/926/875/926875938-55a5d4a536394_huge256"></m-avatar>
       <m-avatar square src="https://avatar-static.segmentfault.com/926/875/926875938-55a5d4a536394_huge256"></m-avatar>
       <m-avatar size="80">U</m-avatar>
       <m-avatar size="60" style="background: cornflowerblue;color: #fff;">张</m-avatar>
-    </div> -->
+    </div>
     <div>
       <m-input v-model="input" outline label="毕业院校" prefix-icon="school" style="margin: 10px 0;"></m-input>
       <br>
-      <!-- <m-checkbox>同意用户协议</m-checkbox>
+      <m-checkbox>同意用户协议</m-checkbox>
       <m-checkbox v-model="checkbox" value="agree">同意用户协议</m-checkbox>
       <m-checkbox v-model="checkbox" disabled>禁用</m-checkbox> -->
-
+    <!-- <div>
       <div>
-        <m-checkbox>北京</m-checkbox>
+        <m-checkbox v-model="checkbox">北京</m-checkbox>
         <m-checkbox checked>上海</m-checkbox>
         <m-checkbox disabled>广州</m-checkbox>
         <m-checkbox disabled checked>深圳</m-checkbox>
+        <m-button flat type="primary" @click="checkbox=!checkbox">Change Checkbox</m-button>
       </div>
       <m-checkbox-group v-model="checkboxgroup" style="margin-top: 10px;">
         <m-checkbox value="beijing">北京</m-checkbox>
@@ -111,6 +112,7 @@
         <m-checkbox value="shenzhen">深圳</m-checkbox>
         <m-checkbox value="guangzhou">广州</m-checkbox>
         <span>{{checkboxgroup}}</span>
+        <m-button flat type="primary" @click="checkboxgroup=['beijing', 'shenzhen']">Change Checkbox Group</m-button>
       </m-checkbox-group>
       <div style="margin-top: 10px;">
         <m-radio>北京</m-radio>
@@ -118,13 +120,31 @@
         <m-radio disabled>广州</m-radio>
         <m-radio disabled checked>深圳</m-radio>
       </div>
-      <m-radio-group style="margin-top: 10px;">
+      <m-radio-group v-model="radioGroup" style="margin: 10px 0;">
         <m-radio value="beijing">北京</m-radio>
         <m-radio value="shanghai">上海</m-radio>
         <m-radio value="shenzhen">深圳</m-radio>
         <m-radio value="guangzhou">广州</m-radio>
+        <span>{{radioGroup}}</span>
+        <m-button flat type="primary" @click="radioGroup='guangzhou'">change</m-button>
       </m-radio-group>
-    </div>
+    </div> -->
+    <!-- <div>
+      <m-tag>你好</m-tag>
+      <m-tag close>你好</m-tag>
+      <m-tag close outline>你好</m-tag>
+      <m-tag close>
+        <m-avatar src="http://p.qlogo.cn/bizmail/spSKakq33Wove0qqTlhmDIzxSolbBee8KMnCadZgzLjMQvyjzCJuFA/100">Z</m-avatar>
+        周杰伦
+      </m-tag>
+      <m-tag close small>
+        <m-avatar src="http://p.qlogo.cn/bizmail/spSKakq33Wove0qqTlhmDIzxSolbBee8KMnCadZgzLjMQvyjzCJuFA/100">Z</m-avatar>
+        周杰伦
+      </m-tag>
+      <m-tag small close style="color: #fff;background: orange;">你好</m-tag>
+      <m-tag close small outline>你好</m-tag>
+    </div> -->
+    <m-card>dafal</m-card>
   </div>
 </template>
 
@@ -135,10 +155,12 @@ export default {
       input: '',
       ruleTest: '',
       showPwd: false,
-      tab: '1',
+      tab: '2',
+      tab1: '1',
       checkbox: true,
       radio: false,
       checkboxgroup: [],
+      radioGroup: '',
       rules: [
         val => val.length >= 6 || '密码长度最少六位',
         val => val.length <= 10 || '密码长度最大十位'
@@ -154,4 +176,5 @@ body{margin: 0;padding: 30px;font-size: 14px;}
 .m-input{margin: 0 5px;width: 300px;}
 .m-avatar{margin: 10px;}
 .m-checkbox, .m-radio{margin-right: 10px;}
+.m-tag{margin: 3px;}
 </style>
