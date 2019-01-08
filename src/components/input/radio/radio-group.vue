@@ -21,11 +21,8 @@ export default {
   },
   provide () {
     return {
-      radioGroupValue: this.val
+      radioGroup: this
     }
-  },
-  mounted () {
-    console.log(this._provided)
   }
 }
 </script>

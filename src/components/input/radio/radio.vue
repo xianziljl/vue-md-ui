@@ -1,5 +1,6 @@
 <template>
 <label class="m-radio"
+  v-ripple.center="'.m-radio-icon'"
   :class="{
     'm-radio-checked': isChecked,
     'm-radio-disabled': $attrs.disabled !== undefined
@@ -11,7 +12,7 @@
     v-on="listeners"
     :checked="isChecked"
     :disabled="$attrs.disabled">
-  <div class="m-radio-icon" v-ripple.center></div>
+  <div class="m-radio-icon"></div>
   <span v-if="$slots.default" class="m-radio-label">
     <slot></slot>
   </span>
@@ -35,8 +36,13 @@ export default {
     }
   },
   inject: {
-    radioGroupValue: {
+    radioGroup: {
       default: null
+    }
+  },
+  watch: {
+    'radioGroup.value' (val) {
+      this.isChecked = val === this.value
     }
   },
   computed: {
@@ -49,9 +55,10 @@ export default {
   },
   methods: {
     onChange (e) {
-      // const { value, radioGroupValue } = this
-      this.isChecked = e.target.checked
-      this.$emit('change', e.target.checked)
+      const val = e.target.checked
+      this.isChecked = val
+      this.$emit('change', val)
+      if (this.radioGroup) this.radioGroup.$emit('change', this.value)
     }
   }
 }
