@@ -144,7 +144,11 @@
       <m-tag small close style="color: #fff;background: orange;">你好</m-tag>
       <m-tag close small outline>你好</m-tag>
     </div> -->
-    <m-card>dafal</m-card>
+    <!-- <m-card>dafal</m-card> -->
+    <m-checkbox :disabled="disabled">Checkbox</m-checkbox>
+    <m-radio :disabled="disabled">Radio</m-radio>
+    <m-switcher :disabled="disabled"></m-switcher>
+    <m-button @click="disabled = !disabled" flat type="primary">disabled</m-button>
   </div>
 </template>
 
@@ -161,6 +165,8 @@ export default {
       radio: false,
       checkboxgroup: [],
       radioGroup: '',
+      switcher: false,
+      disabled: false,
       rules: [
         val => val.length >= 6 || '密码长度最少六位',
         val => val.length <= 10 || '密码长度最大十位'
