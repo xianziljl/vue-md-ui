@@ -2,7 +2,7 @@
   <a
     class="m-tab"
     v-ripple
-    :class="{'m-tab-on': value === parentValue}"
+    :class="{'m-tab-on': tabs ? tabs.value === value : false}"
     @click="onClick">
     <slot></slot>
   </a>
@@ -11,26 +11,29 @@
 <script>
 export default {
   name: 'm-tab',
-  inject: ['setValue', 'getValue'],
   props: {
     value: [String, Number]
   },
-  computed: {
-    parentValue () {
-      const value = this.getValue()
-      // 在用户手动修改 v-model 值时更新
-      if (this.$el && value === this.value) this.onClick()
-      return value
+  watch: {
+    'tabs.value' (val) {
+      if (this.value === val) this.tabs.setSlider(this.$el.offsetLeft, this.$el.clientWidth)
+    }
+  },
+  inject: {
+    tabs: {
+      default: null
     }
   },
   mounted () {
-    if (this.parentValue === this.value) this.onClick()
+    if (this.tabs && this.value === this.tabs.value) {
+      this.tabs.setSlider(this.$el.offsetLeft, this.$el.clientWidth)
+    }
   },
   methods: {
     onClick () {
-      const left = this.$el.offsetLeft
-      const width = this.$el.clientWidth
-      this.setValue(this.value, left, width)
+      if (this.tabs) {
+        this.tabs.$emit('change', this.value)
+      }
     }
   }
 }

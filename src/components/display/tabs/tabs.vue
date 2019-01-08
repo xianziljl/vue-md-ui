@@ -39,18 +39,13 @@ export default {
   },
   provide () {
     return {
-      setValue: this.setValue,
-      getValue: this.getValue
+      tabs: this
     }
   },
   methods: {
-    setValue (value, left, width) {
+    setSlider (left, width) {
       this.sliderLeft = left
       this.sliderWidth = width
-      this.$emit('change', value)
-    },
-    getValue () {
-      return this.value
     }
   }
 }
