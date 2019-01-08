@@ -4,7 +4,7 @@
   v-ripple.center="'.m-checkbox-icon'"
   :class="{
     'm-checkbox-checked': isChecked,
-    'm-checkbox-disabled': $attrs.disabled !== undefined
+    'm-checkbox-disabled': $attrs.disabled
   }">
   <input
     type="checkbox"
@@ -77,7 +77,7 @@ export default {
 <style lang="less">
 .m-checkbox{
   @icon-color: rgba(0,0,0,.5);
-  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;
+  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;vertical-align: middle;
   input{display: none;}
   &-label{margin-left: 8px;}
   &-icon{
@@ -97,8 +97,7 @@ export default {
     .m-ripple-animation{background: fadeout(@primary-color, 80%);}
   }
   &-disabled{cursor: default;}
-  &-disabled &-icon{border-color: fadeout(@icon-color, 30%);}
+  &-disabled &-icon{opacity: .5;}
   &-disabled .m-ripple-animation{display: none;}
-  &-disabled&-checked &-icon{border-color: transparent;background: fadeout(@icon-color, 30%);}
 }
 </style>

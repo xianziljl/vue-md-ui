@@ -1,7 +1,7 @@
 <template>
 <button
   class="m-button"
-  v-ripple.circle
+  v-ripple
   :class="[
     type ? `m-button-${type}` : '',
     size ? `m-button-${size}` : '',
@@ -48,18 +48,19 @@ export default {
   height: 34px;line-height: 1em;padding: 0 15px;font-size: @font-size;cursor: pointer;border-radius: 4px;
   outline: none;background: @normal-bg;overflow: hidden;border: none;vertical-align: middle;
   transition: background-color .3s, border-color .3s, box-shadow .3s;white-space: nowrap;
-  &[disabled]{opacity: .6;cursor: default;pointer-events: none;}
   &:hover{.shadow(@dark-hover);}
   &-round{border-radius: 100px;}
 
   &-primary{background: @primary-color;color: #fff;}
   &-warning{background: @warning-color;color: #fff;}
   &-denger{background: @denger-color;color: #fff;}
+  &[disabled]{opacity: .6;cursor: default;box-shadow: none;}
   &:hover{
     &.m-button{
       &-primary{.shadow(fadeout(@primary-color, 60%));}
       &-warning{.shadow(fadeout(@warning-color, 60%));}
       &-denger{.shadow(fadeout(@denger-color, 60%));}
+      &[disabled]{box-shadow: none;}
     }
   }
 
@@ -68,11 +69,12 @@ export default {
     &:hover{box-shadow: none;background: fadeout(@normal-bg, 2%);}
     &.m-button{
       &-primary{color: @primary-color;}
-      &-primary:hover{background: fadeout(@primary-color, 95%);box-shadow: none;}
+      &-primary:hover{background: fadeout(@primary-color, 90%);box-shadow: none;}
       &-warning{color: @warning-color;}
-      &-warning:hover{background: fadeout(@warning-color, 95%);box-shadow: none;}
+      &-warning:hover{background: fadeout(@warning-color, 90%);box-shadow: none;}
       &-denger{color: @denger-color;}
-      &-denger:hover{background: fadeout(@denger-color, 95%);box-shadow: none;}
+      &-denger:hover{background: fadeout(@denger-color, 90%);box-shadow: none;}
+      &[disabled]{background: transparent;border-color: rgba(0, 0, 0, .1);}
     }
   }
   &-outline{border: 1px solid rgba(0, 0, 0, .1);padding: 0 14px;}

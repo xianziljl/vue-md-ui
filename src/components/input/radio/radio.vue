@@ -3,7 +3,7 @@
   v-ripple.center="'.m-radio-icon'"
   :class="{
     'm-radio-checked': isChecked,
-    'm-radio-disabled': $attrs.disabled !== undefined
+    'm-radio-disabled': $attrs.disabled
   }"
 >
   <input
@@ -67,9 +67,10 @@ export default {
 <style lang="less">
 .m-radio{
   @icon-color: rgba(0,0,0,.5);
-  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;
+  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;vertical-align: middle;
   input{display: none;}
   &-icon{position: relative;width: 16px;height: 16px;border: 2px solid @icon-color;border-radius: 8px;
+    transition: all .3s;
     &:after{
       content: '';position: absolute;display: block;width: 8px;height: 8px;background: @icon-color;
       left: 2px;top: 2px;border-radius: 4px;transform: scale(0);transition: all .2s;
@@ -83,9 +84,8 @@ export default {
   }
   &-disabled{
     cursor: default;
-    .m-radio-icon{border-color: fadeout(@icon-color, 30%);}
-    .m-radio-icon:after{background: fadeout(@icon-color, 30%);}
-    .m-ripple-container{display: none;}
+    .m-radio-icon{opacity: .5;}
+    .m-ripple-animation{display: none;}
   }
 }
 </style>
