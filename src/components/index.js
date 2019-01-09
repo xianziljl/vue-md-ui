@@ -13,6 +13,7 @@ import Card from './display/card'
 import Tabs from './display/tabs'
 import Avatar from './display/avatar'
 import Tag from './display/tag'
+import Menu from './feedback/menu'
 
 Vue.use(Avatar)
 Vue.use(Button)
@@ -24,3 +25,4 @@ Vue.use(Tabs)
 Vue.use(Checkbox)
 Vue.use(Radio)
 Vue.use(Tag)
+Vue.use(Menu)

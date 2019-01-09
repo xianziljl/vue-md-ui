@@ -145,10 +145,36 @@
       <m-tag close small outline>你好</m-tag>
     </div> -->
     <!-- <m-card>dafal</m-card> -->
-    <m-checkbox :disabled="disabled">Checkbox</m-checkbox>
+    <!-- <m-checkbox :disabled="disabled">Checkbox</m-checkbox>
     <m-radio :disabled="disabled">Radio</m-radio>
     <m-switcher :disabled="disabled"></m-switcher>
-    <m-button @click="disabled = !disabled" flat type="primary">disabled</m-button>
+    <m-button @click="disabled = !disabled" flat type="primary">disabled</m-button> a-->
+    <m-menu style="margin-right: 50px;">
+      <m-menu-item icon="photo">播放幻灯片</m-menu-item>
+      <m-menu-item icon="cloud_download">下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
+      <m-menu-item @click="onClick" disabled icon="crop_rotate">旋转</m-menu-item>
+      <div style="height: 1px;background: #ddd;margin: 10px 0;"></div>
+      <m-menu-item @click="onClick" icon="people">添加到影集</m-menu-item>
+      <m-menu-item icon="beach_access">归档</m-menu-item>
+    </m-menu>
+    <m-menu>
+      <m-button flat slot="activator">更多</m-button>
+      <m-menu-item>播放幻灯片</m-menu-item>
+      <m-menu-item>下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
+      <m-menu-item>旋转</m-menu-item>
+      <m-menu-item>添加到影集</m-menu-item>
+      <m-menu-item>归档</m-menu-item>
+    </m-menu>
+    <m-menu style="margin-right: 200px;">
+      <m-menu-item icon="people">添加到影集</m-menu-item>
+      <m-menu-item icon="beach_access">归档2</m-menu-item>
+      <m-menu-item icon="delete" style="color:red;">删除</m-menu-item>
+    </m-menu>
+    <m-menu>
+      <m-button flat slot="activator">更多</m-button>
+      <m-menu-item>播放幻灯片sdfasdfasd</m-menu-item>
+      <m-menu-item>下载</m-menu-item>
+    </m-menu>
   </div>
 </template>
 
@@ -172,13 +198,18 @@ export default {
         val => val.length <= 10 || '密码长度最大十位'
       ]
     }
+  },
+  methods: {
+    onClick () {
+      console.log('onclick')
+    }
   }
 }
 </script>
 
 <style lang="less">
 body{margin: 0;padding: 30px;font-size: 14px;}
-.m-button{margin: 5px;}
+// .m-button{margin: 5px;}
 .m-input{margin: 0 5px;width: 300px;}
 .m-avatar{margin: 10px;}
 .m-checkbox, .m-radio{margin-right: 10px;}
