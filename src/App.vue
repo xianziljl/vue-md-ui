@@ -49,8 +49,8 @@
       <m-button icon round flat type="primary"><m-icon>delete</m-icon></m-button>
       <m-button icon round outline type="denger"><m-icon>delete</m-icon></m-button>
       <m-button icon type="primary"><m-icon>delete</m-icon></m-button>
-    </div> -->
-    <!-- <div style="display:;">
+    </div>
+    <div style="display:;">
       <m-input v-model="input" type="number" label="数字输入"></m-input><br>
       <m-input v-model="input" disabled label="户籍所在地"></m-input><br>
       <m-input v-model="input" single-line label="户籍所在地"></m-input><br>
@@ -73,8 +73,8 @@
         :rules="rules"
         @click:suffix-icon="showPwd = !showPwd"
       ></m-input><br>
-    </div> -->
-    <!-- <div>
+    </div>
+    <div>
       <m-tabs v-model="tab">
         <m-tab value="1">艺术家</m-tab>
         <m-tab value="2">专辑</m-tab>
@@ -85,8 +85,8 @@
         <m-tab-item value="2">专辑</m-tab-item>
         <m-tab-item value="3">播放列表</m-tab-item>
       </m-tab-items>
-    </div> -->
-    <!-- <div>
+    </div>
+    <div>
       <m-avatar title="jobs" src="https://avatar-static.segmentfault.com/926/875/926875938-55a5d4a536394_huge256"></m-avatar>
       <m-avatar square src="https://avatar-static.segmentfault.com/926/875/926875938-55a5d4a536394_huge256"></m-avatar>
       <m-avatar size="80">U</m-avatar>
@@ -97,8 +97,9 @@
       <br>
       <m-checkbox>同意用户协议</m-checkbox>
       <m-checkbox v-model="checkbox" value="agree">同意用户协议</m-checkbox>
-      <m-checkbox v-model="checkbox" disabled>禁用</m-checkbox> -->
-    <!-- <div>
+      <m-checkbox v-model="checkbox" disabled>禁用</m-checkbox>
+    </div>
+    <div>
       <div>
         <m-checkbox v-model="checkbox">北京</m-checkbox>
         <m-checkbox checked>上海</m-checkbox>
@@ -128,8 +129,8 @@
         <span>{{radioGroup}}</span>
         <m-button flat type="primary" @click="radioGroup='guangzhou'">change</m-button>
       </m-radio-group>
-    </div> -->
-    <!-- <div>
+    </div>
+    <div>
       <m-tag>你好</m-tag>
       <m-tag close>你好</m-tag>
       <m-tag close outline>你好</m-tag>
@@ -143,27 +144,18 @@
       </m-tag>
       <m-tag small close style="color: #fff;background: orange;">你好</m-tag>
       <m-tag close small outline>你好</m-tag>
-    </div> -->
-    <!-- <m-card>dafal</m-card> -->
-    <!-- <m-checkbox :disabled="disabled">Checkbox</m-checkbox>
+    </div>
+    <m-checkbox :disabled="disabled">Checkbox</m-checkbox>
     <m-radio :disabled="disabled">Radio</m-radio>
     <m-switcher :disabled="disabled"></m-switcher>
-    <m-button @click="disabled = !disabled" flat type="primary">disabled</m-button> a-->
-    <m-menu style="margin-right: 50px;">
+    <m-button @click="disabled = !disabled" flat type="primary">disabled</m-button> -->
+    <!-- <m-menu style="margin-right: 50px;">
       <m-menu-item icon="photo">播放幻灯片</m-menu-item>
       <m-menu-item icon="cloud_download">下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
       <m-menu-item @click="onClick" disabled icon="crop_rotate">旋转</m-menu-item>
-      <div style="height: 1px;background: #ddd;margin: 10px 0;"></div>
+      <m-divider height="16"></m-divider>
       <m-menu-item @click="onClick" icon="people">添加到影集</m-menu-item>
       <m-menu-item icon="beach_access">归档</m-menu-item>
-    </m-menu>
-    <m-menu>
-      <m-button flat slot="activator">更多</m-button>
-      <m-menu-item>播放幻灯片</m-menu-item>
-      <m-menu-item>下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
-      <m-menu-item>旋转</m-menu-item>
-      <m-menu-item>添加到影集</m-menu-item>
-      <m-menu-item>归档</m-menu-item>
     </m-menu>
     <m-menu style="margin-right: 200px;">
       <m-menu-item icon="people">添加到影集</m-menu-item>
@@ -175,6 +167,20 @@
       <m-menu-item>播放幻灯片sdfasdfasd</m-menu-item>
       <m-menu-item>下载</m-menu-item>
     </m-menu>
+
+    <div style="width: 200px;height: 200px;background: #eee;overflow: auto;">
+      <div style="width: 400px;height: 400px;">
+        <m-menu style="margin: 200px 0 0 200px;">
+          <m-button flat slot="activator">更多</m-button>
+          <m-menu-item>播放幻灯片</m-menu-item>
+          <m-menu-item>下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
+          <m-menu-item>旋转</m-menu-item>
+          <m-menu-item>添加到影集</m-menu-item>
+          <m-menu-item>归档</m-menu-item>
+        </m-menu>
+      </div>
+    </div> -->
+    <m-button v-tooltip="'123132312'">Tooltip</m-button>
   </div>
 </template>
 
@@ -209,7 +215,7 @@ export default {
 
 <style lang="less">
 body{margin: 0;padding: 30px;font-size: 14px;}
-// .m-button{margin: 5px;}
+.m-button{margin: 5px;}
 .m-input{margin: 0 5px;width: 300px;}
 .m-avatar{margin: 10px;}
 .m-checkbox, .m-radio{margin-right: 10px;}
