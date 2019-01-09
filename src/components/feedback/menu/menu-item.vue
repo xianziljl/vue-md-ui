@@ -1,8 +1,8 @@
 <template>
 <div
   class="m-menu-item"
-  tabindex="0"
   v-ripple
+  :tabindex="disabled ? '' : '0'"
   :class="{'m-menu-item-disabled': disabled}"
   @click="onClick">
   <i v-if="icon" class="material-icons m-menu-item-icon">{{icon}}</i>
@@ -17,10 +17,16 @@ export default {
     icon: String,
     disabled: Boolean
   },
+  inject: {
+    menu: {
+      default: null
+    }
+  },
   methods: {
     onClick (e) {
-      if (this.disabled) e.stopPropagation()
-      else this.$emit('click')
+      if (this.disabled) return
+      if (this.menu) this.menu.hideMenuItems()
+      this.$emit('click')
     }
   }
 }

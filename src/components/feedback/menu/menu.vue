@@ -27,6 +27,11 @@ export default {
       posY: 'top'
     }
   },
+  provide () {
+    return {
+      menu: this
+    }
+  },
   watch: {
     menuShow (val) {
       if (val) {
@@ -72,6 +77,7 @@ export default {
     },
     hideMenuItems (e) {
       const items = this.$refs.menuItems
+      if (e && e.path.includes(items)) return
       items.style.opacity = 0
       setTimeout(() => { this.menuShow = false }, 250)
     }

@@ -13,6 +13,7 @@ import Card from './display/card'
 import Tabs from './display/tabs'
 import Avatar from './display/avatar'
 import Tag from './display/tag'
+import Divider from './display/divider'
 import Menu from './feedback/menu'
 
 Vue.use(Avatar)
@@ -25,4 +26,5 @@ Vue.use(Tabs)
 Vue.use(Checkbox)
 Vue.use(Radio)
 Vue.use(Tag)
+Vue.use(Divider)
 Vue.use(Menu)

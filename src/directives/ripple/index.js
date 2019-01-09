@@ -32,14 +32,19 @@ function showRipple (e) {
 const Ripple = {
   install (Vue, options) {
     Vue.directive('ripple', {
-      bind (el, { modifiers, value }, vnode, oldVnode) {
+      bind (el, { modifiers, value }) {
         if (value && typeof value === 'string') el._m_ripple_selector = value
         if (modifiers.center) el._m_ripple_center = true
         el.addEventListener('mousedown', showRipple, false)
         el.addEventListener('touchstart', showRipple, false)
       },
-      update (el, binding, vnode, oldVnode) {},
-      unbind (el, binding, vnode, oldVnode) {
+      update (el, { modifiers, value }) {
+        if (value && typeof value === 'string') el._m_ripple_selector = value
+        else delete el._m_ripple_selector
+        if (modifiers.center) el._m_ripple_center = true
+        else delete el._m_ripple_center
+      },
+      unbind (el, binding) {
         el.removeEventListener('mousedown', showRipple, false)
         el.removeEventListener('touchstart', showRipple, false)
       }
