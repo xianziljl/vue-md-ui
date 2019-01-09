@@ -1,9 +1,11 @@
 <template>
-<label class="m-radio"
+<label
+  class="m-radio"
   v-ripple.center="'.m-radio-icon'"
+  tabindex="0"
   :class="{
     'm-radio-checked': isChecked,
-    'm-radio-disabled': $attrs.disabled
+    'm-radio-disabled': disabled
   }"
 >
   <input
@@ -11,7 +13,7 @@
     v-bind="$attrs"
     v-on="listeners"
     :checked="isChecked"
-    :disabled="$attrs.disabled">
+    :disabled="disabled">
   <div class="m-radio-icon"></div>
   <span v-if="$slots.default" class="m-radio-label">
     <slot></slot>
@@ -24,7 +26,8 @@ export default {
   name: 'm-radio',
   props: {
     checked: Boolean,
-    value: [Number, String, Boolean]
+    value: [Number, String, Boolean],
+    disabled: Boolean
   },
   model: {
     prop: 'checked',
@@ -67,7 +70,7 @@ export default {
 <style lang="less">
 .m-radio{
   @icon-color: rgba(0,0,0,.5);
-  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;vertical-align: middle;
+  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;vertical-align: middle;outline: none;
   input{display: none;}
   &-icon{position: relative;width: 16px;height: 16px;border: 2px solid @icon-color;border-radius: 8px;
     transition: all .3s;

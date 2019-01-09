@@ -1,6 +1,7 @@
 <template>
 <button
   class="m-button"
+  tabindex="0"
   v-ripple
   :class="[
     type ? `m-button-${type}` : '',
@@ -44,6 +45,7 @@ export default {
   .shadow(@color){
     box-shadow: 0 2px 6px @color;
   }
+  outline: none;
   position: relative;display: inline-flex;align-items: center;justify-content: center;color: @text-color;
   height: 34px;line-height: 1em;padding: 0 15px;font-size: @font-size;cursor: pointer;border-radius: 4px;
   outline: none;background: @normal-bg;overflow: hidden;border: none;vertical-align: middle;

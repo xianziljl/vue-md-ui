@@ -2,8 +2,9 @@
 <label
   class="m-switcher"
   v-ripple.center="'.m-switcher-thumb'"
+  tabindex="0"
   :class="{
-    'm-switcher-disabled': $attrs.disabled,
+    'm-switcher-disabled': disabled,
     'm-switcher-checked': isChecked
   }">
   <input
@@ -11,7 +12,7 @@
     v-bind="$attrs"
     v-on="listeners"
     :checked="isChecked"
-    :disabled="$attrs.disabled">
+    :disabled="disabled">
   <div class="m-switcher-icon">
     <div class="m-switcher-thumb"></div>
   </div>
@@ -22,7 +23,8 @@
 export default {
   name: 'm-switcher',
   props: {
-    checked: Boolean
+    checked: Boolean,
+    disabled: Boolean
   },
   model: {
     prop: 'checked',
@@ -59,7 +61,7 @@ export default {
 .m-switcher{
   @bg-color: rgba(0,0,0,.2);
   position: relative;display: inline-block;vertical-align: middle;background: none;width: 28px;padding: 3px;
-  cursor: pointer;vertical-align: middle;
+  cursor: pointer;vertical-align: middle;outline: none;
   input{display: none;}
   &-icon{
     position: relative;width: 28px;height: 12px;background: @bg-color;border-radius: 10px;

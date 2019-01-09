@@ -2,14 +2,16 @@
 <label
   class="m-checkbox"
   v-ripple.center="'.m-checkbox-icon'"
+  tabindex="0"
   :class="{
     'm-checkbox-checked': isChecked,
-    'm-checkbox-disabled': $attrs.disabled
+    'm-checkbox-disabled': disabled
   }">
   <input
     type="checkbox"
     v-bind="$attrs"
     :checked="isChecked"
+    :disabled="disabled"
     v-on="listeners">
   <div class="m-checkbox-icon"></div>
   <span v-if="$slots.default" class="m-checkbox-label">
@@ -23,7 +25,8 @@ export default {
   name: 'm-checkbox',
   props: {
     checked: Boolean,
-    value: [String, Number] // 在 checkbox-group 中使用
+    value: [String, Number], // 在 checkbox-group 中使用
+    disabled: Boolean
   },
   model: {
     prop: 'checked',
@@ -77,7 +80,8 @@ export default {
 <style lang="less">
 .m-checkbox{
   @icon-color: rgba(0,0,0,.5);
-  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;vertical-align: middle;
+  display: inline-flex;padding: 4px;cursor: pointer;align-items: center;line-height: 1em;vertical-align: middle;outline: none;
+  // &:focus{}
   input{display: none;}
   &-label{margin-left: 8px;}
   &-icon{
