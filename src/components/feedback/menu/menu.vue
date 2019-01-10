@@ -69,11 +69,9 @@ export default {
       } else {
         y += pageYOffset
       }
-      items.setAttribute('style', `width: 0;height: 0;${this.posX}: ${x}px;${this.posY}: ${y}px;opacity: 0;`)
-      items.setAttribute(
-        'style',
-        `width: ${w}px;height: ${h}px;${this.posX}: ${x}px;${this.posY}: ${y}px;opacity: 1;`
-      )
+      const { posX, posY } = this
+      items.setAttribute('style', `width: 0;height: 0;${posX}: ${x}px;${posY}: ${y}px;opacity: 0;`)
+      items.setAttribute('style', `width: ${w}px;height: ${h}px;${posX}: ${x}px;${posY}: ${y}px;opacity: 1;`)
     },
     hideMenuItems (e) {
       const items = this.$refs.menuItems

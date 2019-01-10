@@ -1,3 +1,17 @@
 .m-tooltip{
-  &-container{overflow: hidden;}
+  @bg-color: rgba(90, 90, 90, 0.9);
+  &-container{
+    position: absolute;display: inline-block;overflow: hidden;background: @bg-color;color: #fff;
+    padding: 3px 6px;border-radius: 3px;box-shadow: 0 2px 5px rgba(0,0,0,.2);pointer-events: none;
+    line-height: 20px;
+    z-index: 1000;transition: opacity .4s .2s;font-size: 12px;opacity: 0;
+    // &-top{transform-origin: bottom;}
+    // &-bottom{transform-origin: top;}
+    // &-left{transform-origin: right;}
+    // &-right{transform-origin: left;}
+    // &-left-top{transform-origin: right bottom;}
+    // &-left-bottom{transform-origin: right top;}
+    // &-right-top{transform-origin: left bottom;}
+    // &-right-bottom{transform-origin: left top;}
+  }
 }

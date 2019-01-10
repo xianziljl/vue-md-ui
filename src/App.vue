@@ -149,14 +149,7 @@
     <m-radio :disabled="disabled">Radio</m-radio>
     <m-switcher :disabled="disabled"></m-switcher>
     <m-button @click="disabled = !disabled" flat type="primary">disabled</m-button> -->
-    <!-- <m-menu style="margin-right: 50px;">
-      <m-menu-item icon="photo">播放幻灯片</m-menu-item>
-      <m-menu-item icon="cloud_download">下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
-      <m-menu-item @click="onClick" disabled icon="crop_rotate">旋转</m-menu-item>
-      <m-divider height="16"></m-divider>
-      <m-menu-item @click="onClick" icon="people">添加到影集</m-menu-item>
-      <m-menu-item icon="beach_access">归档</m-menu-item>
-    </m-menu>
+    <!--
     <m-menu style="margin-right: 200px;">
       <m-menu-item icon="people">添加到影集</m-menu-item>
       <m-menu-item icon="beach_access">归档2</m-menu-item>
@@ -180,7 +173,22 @@
         </m-menu>
       </div>
     </div> -->
-    <m-button v-tooltip="'123132312'">Tooltip</m-button>
+    <m-menu style="float: right;">
+      <m-button slot="activator" icon v-tooltip="'点击查看更多'">
+        <m-icon>edit</m-icon>
+      </m-button>
+      <m-menu-item icon="photo">播放幻灯片</m-menu-item>
+      <m-menu-item icon="cloud_download">下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
+      <m-menu-item @click="onClick" disabled icon="crop_rotate">旋转</m-menu-item>
+      <m-divider height="16"></m-divider>
+      <m-menu-item @click="onClick" icon="people">添加到影集</m-menu-item>
+      <m-menu-item icon="beach_access">归档</m-menu-item>
+    </m-menu><br>
+    <m-button v-tooltip="'123132312'">top</m-button>
+    <m-button v-tooltip:bottom="'99999'">bottom</m-button>
+    <m-button v-tooltip:left="'123132312'">left</m-button>
+    <m-button v-tooltip:right="'99999'">right</m-button>
+    <m-button v-tooltip="'99999'">auto</m-button>
   </div>
 </template>
 
@@ -214,8 +222,8 @@ export default {
 </script>
 
 <style lang="less">
-body{margin: 0;padding: 30px;font-size: 14px;}
-.m-button{margin: 5px;}
+body{margin: 0;font-size: 14px;}
+// .m-button{margin: 5px;}
 .m-input{margin: 0 5px;width: 300px;}
 .m-avatar{margin: 10px;}
 .m-checkbox, .m-radio{margin-right: 10px;}
