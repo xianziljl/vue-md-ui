@@ -3,6 +3,7 @@
   class="m-button"
   tabindex="0"
   v-ripple
+  :type="formType || 'button'"
   :class="[
     type ? `m-button-${type}` : '',
     size ? `m-button-${size}` : '',
@@ -10,12 +11,19 @@
       'm-button-flat': flat,
       'm-button-round': round,
       'm-button-outline': outline,
-      'm-button-icon': icon,
-      'm-button-loading': loading
+      'm-button-icon': icon
     }
   ]"
   v-bind="$attrs"
   v-on="$listeners">
+  <transition name="m-button-loading">
+    <div v-if="loading" class="m-button-loading">
+      <m-progress
+        :size="16"
+        :type="type"
+        :inverted="(!flat && !outline && type !== '')"/>
+    </div>
+  </transition>
   <slot></slot>
 </button>
 </template>
@@ -26,6 +34,7 @@ export default {
   props: {
     // button 默认属性.
     type: String, // normal, primary, warning, denger; default: normal
+    formType: String, // submit, reset
     size: String, // normal, small, large; default: normal
     flat: Boolean,
     round: Boolean,
@@ -50,14 +59,17 @@ export default {
   height: 34px;line-height: 1em;padding: 0 15px;font-size: @font-size;cursor: pointer;border-radius: 4px;
   outline: none;background: @normal-bg;overflow: hidden;border: none;vertical-align: middle;
   transition: background-color .3s, border-color .3s, box-shadow .3s;white-space: nowrap;
-  &:hover{.shadow(@dark-hover);}
+  &:hover, &:focus{.shadow(@dark-hover);}
   &-round{border-radius: 100px;}
 
   &-primary{background: @primary-color;color: #fff;}
   &-warning{background: @warning-color;color: #fff;}
   &-denger{background: @denger-color;color: #fff;}
-  &[disabled]{opacity: .6;cursor: default;box-shadow: none;}
-  &:hover{
+  // &-primary, &-warning, &-denger{
+  //   circle{stroke: #fff;}
+  // }
+  &[disabled]{opacity: .7;cursor: default;box-shadow: none;}
+  &:hover, &:focus{
     &.m-button{
       &-primary{.shadow(fadeout(@primary-color, 60%));}
       &-warning{.shadow(fadeout(@warning-color, 60%));}
@@ -68,23 +80,23 @@ export default {
 
   &-flat, &-outline{
     background: transparent;
-    &:hover{box-shadow: none;background: fadeout(@normal-bg, 2%);}
+    &:hover, &:focus{box-shadow: none;background: fadeout(@normal-bg, 2%);}
     &.m-button{
       &-primary{color: @primary-color;}
-      &-primary:hover{background: fadeout(@primary-color, 90%);box-shadow: none;}
+      &-primary:hover, &-primary:focus{background: fadeout(@primary-color, 90%);box-shadow: none;}
       &-warning{color: @warning-color;}
-      &-warning:hover{background: fadeout(@warning-color, 90%);box-shadow: none;}
+      &-warning:hover, &-warning:focus{background: fadeout(@warning-color, 90%);box-shadow: none;}
       &-denger{color: @denger-color;}
-      &-denger:hover{background: fadeout(@denger-color, 90%);box-shadow: none;}
+      &-denger:hover, &-denger:focus{background: fadeout(@denger-color, 90%);box-shadow: none;}
       &[disabled]{background: transparent;border-color: rgba(0, 0, 0, .1);}
     }
   }
   &-outline{border: 1px solid rgba(0, 0, 0, .1);padding: 0 14px;}
   &-outline{
     &.m-button{
-      &-primary:hover{border-color: fadeout(@primary-color, 80%);}
-      &-warning:hover{border-color: fadeout(@warning-color, 80%);}
-      &-denger:hover{border-color: fadeout(@denger-color, 80%);}
+      &-primary:hover, &-primary:focus{border-color: fadeout(@primary-color, 80%);}
+      &-warning:hover, &-warning:focus{border-color: fadeout(@warning-color, 80%);}
+      &-denger:hover, &-denger:focus{border-color: fadeout(@denger-color, 80%);}
     }
   }
   .material-icons{font-size: 18px;vertical-align: sub;}
@@ -104,14 +116,18 @@ export default {
       &-denger .@{ripple}{background: fadeout(@denger-color, 80%);}
     }
   }
-  &-icon{padding: 0;width: 32px;height: 32px;
-    .material-icons{font-size: 20px;}
-  }
+  &-icon{padding: 0;width: 32px;height: 32px;font-size: 20px;font-family: 'Material Icons';}
+  &-icon&-large{font-size: 24px;}
+  &-icon&-small{font-size: 16px;}
   &-small&-icon{width: 28px;height: 28px;
     .material-icons{font-size: 18px;}
   }
   &-large&-icon{width: 40px;height: 40px;
     .material-icons{font-size: 24px;}
+  }
+
+  &-loading{width: 22px;height: 16px;transition: all .2s;text-align: left;opacity: 1;
+    &-enter, &-leave-to{width: 0;opacity: 0;}
   }
 }
 </style>

@@ -1,18 +1,22 @@
 <template>
-  <a
+  <componnet
     class="m-tab"
+    :is="to ? 'router-link' : 'a'"
+    :to="to"
+    :replace="tabs.replace"
     v-ripple
     :class="{'m-tab-on': tabs ? tabs.value === value : false}"
     @click="onClick">
     <slot></slot>
-  </a>
+  </componnet>
 </template>
 
 <script>
 export default {
   name: 'm-tab',
   props: {
-    value: [String, Number]
+    value: [String, Number],
+    to: String
   },
   watch: {
     'tabs.value' (val) {
@@ -30,7 +34,10 @@ export default {
     }
   },
   methods: {
-    onClick () {
+    onClick (e) {
+      if (this.to) {
+        return
+      }
       if (this.tabs) {
         this.tabs.$emit('change', this.value)
       }
@@ -42,7 +49,7 @@ export default {
 <style lang="less">
 .m-tab{
   position: relative;height: 100%;display: inline-flex;align-items: center;padding: 0 12px;font-size: 14px;line-height: 1em;
-  cursor: pointer;color: @text-color;transition: color .2s;user-select: none;white-space: nowrap;justify-content: center;
+  cursor: pointer;transition: color .2s;user-select: none;white-space: nowrap;justify-content: center;
   .m-ripple-animation{background: fadeout(@primary-color, 90%);}
   &-on{color: @primary-color;}
   &:hover{color: @primary-color;}

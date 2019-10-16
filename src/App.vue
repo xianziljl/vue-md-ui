@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <router-view></router-view>
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
       <m-button type="primary">Primary</m-button>
@@ -49,8 +50,8 @@
       <m-button icon round flat type="primary"><m-icon>delete</m-icon></m-button>
       <m-button icon round outline type="denger"><m-icon>delete</m-icon></m-button>
       <m-button icon type="primary"><m-icon>delete</m-icon></m-button>
-    </div>
-    <div style="display:;">
+    </div> -->
+    <!-- <div style="display:;">
       <m-input v-model="input" type="number" label="数字输入"></m-input><br>
       <m-input v-model="input" disabled label="户籍所在地"></m-input><br>
       <m-input v-model="input" single-line label="户籍所在地"></m-input><br>
@@ -69,12 +70,12 @@
         clearable
         label="密码"
         hint="六位以上字符，包含数字、字母、特殊符号"
-        counter
+        counter="10"
         :rules="rules"
         @click:suffix-icon="showPwd = !showPwd"
       ></m-input><br>
-    </div>
-    <div>
+    </div> -->
+    <!-- <div>
       <m-tabs v-model="tab">
         <m-tab value="1">艺术家</m-tab>
         <m-tab value="2">专辑</m-tab>
@@ -149,46 +150,43 @@
     <m-radio :disabled="disabled">Radio</m-radio>
     <m-switcher :disabled="disabled"></m-switcher>
     <m-button @click="disabled = !disabled" flat type="primary">disabled</m-button> -->
-    <!--
-    <m-menu style="margin-right: 200px;">
-      <m-menu-item icon="people">添加到影集</m-menu-item>
-      <m-menu-item icon="beach_access">归档2</m-menu-item>
-      <m-menu-item icon="delete" style="color:red;">删除</m-menu-item>
-    </m-menu>
-    <m-menu>
-      <m-button flat slot="activator">更多</m-button>
-      <m-menu-item>播放幻灯片sdfasdfasd</m-menu-item>
-      <m-menu-item>下载</m-menu-item>
-    </m-menu>
-
-    <div style="width: 200px;height: 200px;background: #eee;overflow: auto;">
-      <div style="width: 400px;height: 400px;">
-        <m-menu style="margin: 200px 0 0 200px;">
-          <m-button flat slot="activator">更多</m-button>
-          <m-menu-item>播放幻灯片</m-menu-item>
-          <m-menu-item>下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
-          <m-menu-item>旋转</m-menu-item>
-          <m-menu-item>添加到影集</m-menu-item>
-          <m-menu-item>归档</m-menu-item>
-        </m-menu>
-      </div>
-    </div> -->
-    <m-menu style="float: right;">
-      <m-button slot="activator" icon v-tooltip="'点击查看更多'">
+    <!-- <m-menu>
+      <m-button slot="activator" icon round flat>
         <m-icon>edit</m-icon>
       </m-button>
-      <m-menu-item icon="photo">播放幻灯片</m-menu-item>
-      <m-menu-item icon="cloud_download">下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
+      <m-menu-item @click="onClick" icon="photo">播放幻灯片</m-menu-item>
+      <m-menu-item @click="onClick" icon="cloud_download">下载<span style="margin-left: 10px;font-size: 12px;color: #aaa;">Shift + D</span></m-menu-item>
       <m-menu-item @click="onClick" disabled icon="crop_rotate">旋转</m-menu-item>
       <m-divider height="16"></m-divider>
       <m-menu-item @click="onClick" icon="people">添加到影集</m-menu-item>
       <m-menu-item icon="beach_access">归档</m-menu-item>
-    </m-menu><br>
-    <m-button v-tooltip="'123132312'">top</m-button>
-    <m-button v-tooltip:bottom="'99999'">bottom</m-button>
-    <m-button v-tooltip:left="'123132312'">left</m-button>
-    <m-button v-tooltip:right="'99999'">right</m-button>
-    <m-button v-tooltip="'99999'">auto</m-button>
+    </m-menu>
+    <m-switcher v-model="loading" style="float:right"></m-switcher>
+    <div style="height: 3000px;"></div> -->
+    <!-- <m-button outline :loading="loading" type="primary" @click="modalShow=!modalShow">Show Modal</m-button>
+    <m-modal
+      v-if="modalShow"
+      title="Use Google's location service?"
+      max-width="260px"
+      mask-click
+      :confirm-loading="modalConfirmLoading"
+      confirm-type="primary"
+      confirm-text="AGREE"
+      cancel-text="DISAGREE"
+      @cancel="modalShow=false"
+      @confirm="onModalConfirm">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+    </m-modal>
+    {{select}}
+    <m-select outline v-model="select" label="选择框">
+      <m-select-option value="0">hello</m-select-option>
+      <m-select-option value="1">121</m-select-option>
+      <m-select-option value="2">1231242</m-select-option>
+      <m-select-option value="3">4</m-select-option>
+      <m-select-option value="4">234</m-select-option>
+    </m-select>
+
+    <m-tree></m-tree>-->
+
   </div>
 </template>
 
@@ -206,23 +204,33 @@ export default {
       checkboxgroup: [],
       radioGroup: '',
       switcher: false,
+      select: '',
       disabled: false,
       rules: [
         val => val.length >= 6 || '密码长度最少六位',
         val => val.length <= 10 || '密码长度最大十位'
-      ]
+      ],
+      modalShow: false,
+      modalConfirmLoading: false,
+      loading: false
     }
   },
   methods: {
     onClick () {
       console.log('onclick')
+    },
+    onModalConfirm () {
+      this.modalConfirmLoading = true
+      setTimeout(() => {
+        this.modalShow = this.modalConfirmLoading = false
+      }, 2000)
     }
   }
 }
 </script>
 
 <style lang="less">
-body{margin: 0;font-size: 14px;}
+// body{margin: 0;font-size: 14px;}
 // .m-button{margin: 5px;}
 .m-input{margin: 0 5px;width: 300px;}
 .m-avatar{margin: 10px;}

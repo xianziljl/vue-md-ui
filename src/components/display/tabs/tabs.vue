@@ -22,7 +22,8 @@ export default {
   props: {
     value: [String, Number],
     center: Boolean,
-    full: Boolean
+    full: Boolean,
+    replace: Boolean
   },
   data () {
     return {

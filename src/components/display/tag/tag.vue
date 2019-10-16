@@ -25,8 +25,8 @@ export default {
 
 <style lang="less">
 .m-tag{
-  @bg-color: rgba(0,0,0,0.1);
-  display: inline-flex;height: 26px;align-items: center;line-height: 1em;padding: 0 9px;background: @bg-color;font-size: 14px;
+  @bg-color: rgba(0,0,0,0.1);position: relative;
+  display: inline-flex;height: 30px;align-items: center;line-height: 1em;padding: 0 10px;background: @bg-color;font-size: 14px;
   border-radius: 30px;vertical-align: middle;border: 1px solid transparent;
   &-close{padding-right: 4px;}
   &-close-btn{font-size: 18px;margin-left: 5px;cursor: pointer;opacity: .4;}
@@ -34,7 +34,7 @@ export default {
   &-outline{background: transparent;border-color: @bg-color;}
   .m-avatar{width: 24px;height: 24px;margin: 0 5px 0 -9px;}
   &-small{
-    font-size: 12px;height: 22px;padding: 0 7px;
+    font-size: 12px;height: 24px;padding: 0 7px;
     &.m-tag-close{padding-right: 2px;}
     .m-tag{
       &-close-btn{font-size: 16px;}

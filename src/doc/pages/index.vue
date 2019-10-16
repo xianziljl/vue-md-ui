@@ -1,20 +1,17 @@
 <template>
-<div class="m-progress">
-  m-progress
+<div class="page-index">
+  <m-date-picker></m-date-picker>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'm-progress',
-  props: {
-    value: Number
-  }
+  name: 'page-index'
 }
 </script>
 
 <style lang="less">
-.m-progress{
+.page-index{
   //
 }
 </style>

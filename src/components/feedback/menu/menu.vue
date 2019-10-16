@@ -1,10 +1,10 @@
 <template>
-<div class="m-menu">
-  <div ref="menuActivator" class="m-menu-activator" @click="menuShow = !menuShow">
+<span class="m-menu">
+  <span ref="menuActivator" class="m-menu-activator" @click="onClick">
     <slot name="activator">
       <m-button icon round flat><m-icon>more_vert</m-icon></m-button>
     </slot>
-  </div>
+  </span>
   <div ref="menuItems" v-if="menuShow" class="m-menu-items">
     <div class="m-menu-items-content" :class="[
       `m-menu-items-content-${posX}`,
@@ -13,18 +13,22 @@
       <slot></slot>
     </div>
   </div>
-</div>
+</span>
 </template>
 
 <script>
+import MButton from '../../form/button/button'
+
 export default {
   name: 'm-menu',
+  components: { MButton },
   data () {
     return {
       menuShow: false,
       isTransition: false,
       posX: 'left',
-      posY: 'top'
+      posY: 'top',
+      appendNode: null
     }
   },
   provide () {
@@ -36,13 +40,25 @@ export default {
     menuShow (val) {
       if (val) {
         this.$nextTick(this.showMenuItems)
-        document.addEventListener('click', this.hideMenuItems)
+        setTimeout(() => {
+          document.body.addEventListener('mousedown', this.hideMenuItems)
+        }, 10)
       } else {
-        document.removeEventListener('click', this.hideMenuItems)
+        document.body.removeEventListener('mousedown', this.hideMenuItems)
       }
     }
   },
+  beforeDestroy () {
+    const items = this.$refs.menuItems
+    if (items) {
+      document.removeEventListener('mousedown', this.hideMenuItems)
+      document.body.removeChild(items)
+    }
+  },
   methods: {
+    onClick () {
+      this.menuShow = !this.menuShow
+    },
     showMenuItems () {
       const items = this.$refs.menuItems
       const activator = this.$refs.menuActivator
@@ -75,8 +91,11 @@ export default {
     },
     hideMenuItems (e) {
       const items = this.$refs.menuItems
-      if (e && e.path.includes(items)) return
-      items.style.opacity = 0
+      if (e) {
+        const path = e.path || (e.composedPath && e.composedPath())
+        if (path.includes(items)) return
+      }
+      if (items) items.style.opacity = 0
       setTimeout(() => { this.menuShow = false }, 250)
     }
   }
@@ -85,22 +104,18 @@ export default {
 
 <style lang="less">
 .m-menu{
-  display: inline-block;
-  &-activator{cursor: pointer;}
+  display: inline;
   &-items{
     width: 0;height: 0;
-    position: absolute;display: inline-block;background: #fff;
+    position: fixed;display: inline-block;background: #fff;z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,.2), 0 4px 10px rgba(0,0,0,.1);opacity: 1;
-    border-radius: 8px;transition: all 0.25s cubic-bezier(0, 0.24, 0.25, 1);
+    border-radius: @border-radius;transition: all .3s cubic-bezier(0, 0.24, 0.25, 1);
     overflow: hidden;transform: translate3d(0,0,0);
   }
   &-items-content{position: absolute;padding: 10px 0;}
   &-items-content-left{right: 0;}
-  &-items-content-top{bottom: 0;}
+  &-items-content-top{top: 0;}
   &-items-content-right{left: 0;}
-  &-items-content-bottom{top: 0;}
-  // &-items-content&-items-transition{}
-  // &-items-hide{opacity: 0;}
-  // &-items-content{}
+  &-items-content-bottom{bottom: 0;}
 }
 </style>

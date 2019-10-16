@@ -4,8 +4,10 @@
   v-ripple
   :tabindex="disabled ? '' : '0'"
   :class="{'m-menu-item-disabled': disabled}"
-  @click="onClick">
+  @click="onClick"
+  @keydown.enter="onClick">
   <i v-if="icon" class="material-icons m-menu-item-icon">{{icon}}</i>
+  <slot name="icon"></slot>
   <slot></slot>
 </div>
 </template>

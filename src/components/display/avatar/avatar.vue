@@ -4,7 +4,8 @@
     :title="alt"
     :style="size ? {
       width: `${size}px`,
-      height: `${size}px`
+      height: `${size}px`,
+      backgroundColor: background
     } : ''"
     :class="{'m-avatar-square': square}">
     <div v-if="!src" class="m-avatar-text" :style="{transform: `scale(${textScale})`}">
@@ -15,6 +16,10 @@
 </template>
 
 <script>
+import ColorHash from 'color-hash'
+
+const colorHash = new ColorHash()
+
 export default {
   name: 'm-avatar',
   props: {
@@ -38,6 +43,12 @@ export default {
   computed: {
     fontSize () {
       return (this.size || 40) / 2.5 + 'px'
+    },
+    background () {
+      if (this.src) return 'rgba(0,0,0,0.1)'
+      const slot = this.$slots.default
+      if (!slot || !slot.length) return 'rgba(0,0,0,0.1)'
+      return `rgba(${colorHash.rgb(slot[0].text)}, 0.8)`
     }
   },
   methods: {

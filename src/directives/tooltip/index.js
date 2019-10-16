@@ -45,10 +45,7 @@ function showToolTip (e) {
       if (x + w > docW) x = docW - w - 10
       break
   }
-  // tip.setAttribute('style', `left: ${x}px;top: ${y}px;`)
-  // setTimeout(() => {
   tip.setAttribute('style', `left: ${x}px;top: ${y}px;transform: scale(1);opacity: 1;`)
-  // })
 }
 
 function hideToolTip (e) {
@@ -62,14 +59,12 @@ function hideToolTip (e) {
     el._m_tooltip = null
     document.body.removeChild(tip)
   }
-  // console.log('hide tooltip')
 }
 
 const Tooltip = {
   install (Vue) {
     Vue.directive('tooltip', {
       bind (el, { modifiers, arg, value }) {
-        // console.log(value, modifiers, arg)
         el._m_tooltip_content = value.toString()
         el._m_tooltip_pos = arg || 'auto'
         el.addEventListener('mouseenter', showToolTip)

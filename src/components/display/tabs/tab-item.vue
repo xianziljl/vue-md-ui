@@ -1,5 +1,5 @@
 <template>
-<div v-show="value === tabItems.value" class="m-tab-item">
+<div v-if="value === tabItems.value" class="m-tab-item">
   <slot></slot>
 </div>
 </template>
