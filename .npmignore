@@ -8,3 +8,6 @@ postcssrc.js
 babel.config.js
 todo.md
 vue.config.js
+.postcssrc.js
+.editorconfig
+.vscode
