@@ -3,8 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import '@/components'
-import '@/directives'
+import components from './index'
+
+Vue.use(components)
 
 Vue.config.productionTip = false
 
