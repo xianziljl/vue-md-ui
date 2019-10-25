@@ -172,7 +172,7 @@ export default {
       var checkResult = true
       for (let i = 0; i < rules.length; i++) {
         const rule = rules[i]
-        if (typeof rule !== 'function') console.error('Rules must be functions.')
+        if (typeof rule !== 'function') throw new Error('Rules must be functions.')
         checkResult = rule(value)
         if (checkResult !== true) {
           this.status = 'error'
