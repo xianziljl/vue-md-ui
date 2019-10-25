@@ -96,19 +96,20 @@ export default {
       isFocus: false,
       labelLeft: 0,
       status: 'normal', // normal, error
-      message: ''
+      message: '',
+      labelTransform: ''
     }
   },
   watch: {
-    value (val) { this.val = val }
+    value (val) {
+      this.val = val
+      this.getLabelTransform()
+    },
+    isFocus (val) {
+      this.getLabelTransform()
+    }
   },
   computed: {
-    labelTransform () {
-      if (!(this.isFocus || this.val) || !this.$el) return ''
-      const input = this.$el.querySelector('.m-inputer-box')
-      const container = this.$el.querySelector('.m-inputer-container')
-      return `translate3d(${-(this.outline ? input.offsetLeft - 10 : input.offsetLeft)}px, -${container.clientHeight / 2}px, 0) scale(0.88)`
-    },
     listeners () {
       const vm = this
       return Object.assign({}, vm.$listeners, {
@@ -125,7 +126,20 @@ export default {
       return isFocus || status !== 'normal'
     }
   },
+  mounted () {
+    this.getLabelTransform()
+  },
   methods: {
+    getLabelTransform () {
+      if (!(this.isFocus || this.val) || !this.$el) {
+        this.labelTransform = ''
+        return
+      }
+      // console.log('xxx')
+      const input = this.$el.querySelector('.m-inputer-box')
+      const container = this.$el.querySelector('.m-inputer-container')
+      this.labelTransform = `translate3d(${-(this.outline ? input.offsetLeft - 10 : input.offsetLeft)}px, -${container.clientHeight / 2}px, 0) scale(0.88)`
+    },
     clear () {
       this.val = ''
       this.status = 'normal'

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
       <m-button type="primary">Primary</m-button>
@@ -51,30 +51,33 @@
       <m-button icon round outline type="denger"><m-icon>delete</m-icon></m-button>
       <m-button icon type="primary"><m-icon>delete</m-icon></m-button>
     </div> -->
-    <!-- <div style="display:;">
-      <m-input v-model="input" type="number" label="数字输入"></m-input><br>
-      <m-input v-model="input" disabled label="户籍所在地"></m-input><br>
-      <m-input v-model="input" single-line label="户籍所在地"></m-input><br>
-      <m-input v-model="input" prefix="https://" label="链接地址" hint-on-demand hint="请真实填写"></m-input><br>
-      <m-input v-model="input" suffix="@gmail.com" label="电子邮箱" hint="拉升阶段了放假啊是亮点附件拉萨大家发拉升阶段了放假啊是亮点附件拉萨大家发"></m-input><br>
-      <m-input v-model="input" disabled outline label="户籍所在地"></m-input><br>
-      <m-input v-model="input" outline prefix="$" label="金额" maxlength="10"></m-input>
-      <m-input v-model="input" outline prefix="$" label="金额" hint="测试" counter="10" clearable></m-input><br>
-      <m-input v-model="input" outline prefix-icon="location_on" label="金额" hint="测试" counter="10" clearable></m-input><br>
-      <m-input
-        v-model="input"
-        outline
-        hint-on-demand
-        :type="showPwd ? 'text' : 'password'"
-        :suffix-icon="showPwd ? 'visibility_off' : 'visibility'"
-        clearable
-        label="密码"
-        hint="六位以上字符，包含数字、字母、特殊符号"
-        counter="10"
-        :rules="rules"
-        @click:suffix-icon="showPwd = !showPwd"
-      ></m-input><br>
-    </div> -->
+    <div style="display:;">
+      <form autocomplete="off">
+        <m-input v-model="input" type="number" label="数字输入"></m-input><br>
+        <m-input v-model="input" disabled label="户籍所在地"></m-input><br>
+        <m-input v-model="input" single-line label="户籍所在地"></m-input><br>
+        <m-input v-model="input" prefix="https://" label="链接地址" hint-on-demand hint="请真实填写"></m-input><br>
+        <m-input v-model="input" suffix="@gmail.com" label="电子邮箱" hint="拉升阶段了放假啊是亮点附件拉萨大家发拉升阶段了放假啊是亮点附件拉萨大家发"></m-input><br>
+        <m-input v-model="input" disabled outline label="户籍所在地"></m-input><br>
+        <m-input v-model="input" outline prefix="$" label="金额" maxlength="10"></m-input>
+        <m-input v-model="input" outline prefix="$" label="金额" hint="测试" counter="10" clearable></m-input><br>
+        <m-input v-model="input" outline prefix-icon="my_location" label="金额" hint="测试" counter="10" clearable></m-input><br>
+        <m-input
+          v-model="input"
+          autocomplete="new-password"
+          outline
+          hint-on-demand
+          :type="showPwd ? 'text' : 'password'"
+          :suffix-icon="showPwd ? 'visibility_off' : 'visibility'"
+          clearable
+          label="密码"
+          hint="六位以上字符，包含数字、字母、特殊符号"
+          counter="10"
+          :rules="rules"
+          @click:suffix-icon="showPwd = !showPwd"
+        ></m-input><br>
+      </form>
+    </div>
     <!-- <div>
       <m-tabs v-model="tab">
         <m-tab value="1">艺术家</m-tab>
