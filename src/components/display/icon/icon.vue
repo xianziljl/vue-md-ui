@@ -24,5 +24,5 @@ export default {
   src: url(./material-icons-outline.woff2) format('woff2');
 }
 .material-icons{transition: color .2s;user-select: none;font-family: Material Icons;font-style: normal;
-font-size: 24px;}
+font-size: 24px;width: 1em;}
 </style>
