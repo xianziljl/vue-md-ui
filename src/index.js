@@ -19,6 +19,7 @@ import Tag from './components/display/tag'
 import Tree from './components/display/tree'
 import Divider from './components/display/divider'
 import Empty from './components/display/empty'
+import TransitionExpand from './components/display/transition-expand'
 
 import Menu from './components/feedback/menu'
 import Modal from './components/feedback/modal'
@@ -48,6 +49,7 @@ const components = {
   Tree,
   Divider,
   Empty,
+  TransitionExpand,
   Menu,
   Modal,
   Progress,
