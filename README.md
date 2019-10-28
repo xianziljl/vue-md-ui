@@ -1,21 +1,21 @@
 # vue-md-ui
 
-## Project setup
-```
-npm install
+## Install
+
+```bash
+$ npm install vue-md-ui --save
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+## Usage
+```js
+import Vue from 'vue'
+
+import vuemdui from 'vue-md-ui/dist/vuemdui.umd.js'
+import 'vue-md-ui/dist/vuemdui.css'
+
+Vue.use(vuemdui)
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+```html
+<m-button type="primary">Button</m-button>
 ```
