@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "name": "一级目录",
+    "parentid": "0"
+  },
+  {
+    "id": "2",
+    "name": "第二个一级目录",
+    "parentid": "0"
+  },
+  {
+    "id": "3",
+    "name": "二级目录",
+    "parentid": "1"
+  },
+  {
+    "id": "4",
+    "name": "联系人1",
+    "avatar": "https://cn.vuejs.org/images/logo.png",
+    "parentid": "2"
+  },
+  {
+    "id": "5",
+    "name": "联系人2",
+    "avatar": "https://cn.vuejs.org/images/logo.png",
+    "parentid": "3"
+  },
+  {
+    "id": "6",
+    "name": "联系人3",
+    "avatar": "https://cn.vuejs.org/images/logo.png",
+    "parentid": "1"
+  }
+]

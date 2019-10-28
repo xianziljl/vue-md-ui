@@ -1,5 +1,14 @@
 <template>
   <div id="app">
+    <m-tree :data="treeData">
+      <!-- <div slot="item" slot-scope="{ item, open, toggle }" @click="toggle()">{{open}}/{{item.name}}</div> -->
+    </m-tree>
+    <m-button @click="transitionExpand = !transitionExpand">transitionExpand</m-button>
+    <m-transition-expand>
+      <ul v-if="transitionExpand">
+        <li v-for="item in 10" :key="item">xxxxxxxxxxxxxxxxxxxxx</li>
+      </ul>
+    </m-transition-expand>
     <!-- <router-view></router-view> -->
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
@@ -51,7 +60,7 @@
       <m-button icon round outline type="denger"><m-icon>delete</m-icon></m-button>
       <m-button icon type="primary"><m-icon>delete</m-icon></m-button>
     </div> -->
-    <div style="display:;">
+    <!-- <div style="display:;">
       <form autocomplete="off">
         <m-input v-model="input" type="number" label="数字输入"></m-input><br>
         <m-input v-model="input" disabled label="户籍所在地"></m-input><br>
@@ -77,7 +86,7 @@
           @click:suffix-icon="showPwd = !showPwd"
         ></m-input><br>
       </form>
-    </div>
+    </div> -->
     <!-- <div>
       <m-tabs v-model="tab">
         <m-tab value="1">艺术家</m-tab>
@@ -194,9 +203,13 @@
 </template>
 
 <script>
+import treeData from './tree-data.json'
+
 export default {
   data () {
     return {
+      treeData,
+      transitionExpand: false,
       input: '',
       ruleTest: '',
       showPwd: false,
