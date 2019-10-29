@@ -5,7 +5,7 @@
   `m-inputer-${status}`,
   {
     'm-inputer-outline': outline,
-    'm-inputer-disabled': disabled || readonly,
+    'm-inputer-disabled': disabled,
     'm-inputer-focus': isFocus
   }]">
   <div class="m-inputer-container">
@@ -84,7 +84,6 @@ export default {
     suffixIcon: String, // 插入内部之后图标
     counter: [String, Number], // 字数提示
     disabled: Boolean, // 禁用
-    readonly: Boolean,
     outline: Boolean, // 使用边框而不是下划线
     clearable: Boolean, // 清除按钮
     singleLine: Boolean, // 单行，无 label
