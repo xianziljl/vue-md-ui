@@ -38,6 +38,11 @@ export default {
   created () {
     this.analytical()
   },
+  watch: {
+    data () {
+      this.analytical()
+    }
+  },
   methods: {
     analytical () {
       let { data, idText, parentidText, childrenText, rootId } = this
