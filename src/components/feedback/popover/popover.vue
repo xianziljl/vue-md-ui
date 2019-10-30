@@ -2,7 +2,7 @@
 <transition name="slide-y">
   <div v-if="show" class="m-popover" :class="['m-popover-'+pos]" :style="style">
     <div class="m-popover-arrow bg-f" :style="arrowStyle"></div>
-    <div class="m-popover-ctn relative bg-f scroll-y" @click="onElClick">
+    <div class="m-popover-ctn relative bg-f scroll-y">
       <slot></slot>
     </div>
   </div>
@@ -30,9 +30,9 @@ export default {
   mounted () {
     this.style = this.getStyle()
     this.arrowStyle = this.getArrowStyle()
-    document.addEventListener('click', this.close, true)
+    document.addEventListener('click', this.close)
     this.$once('hook:beforeDestroy', () => {
-      document.removeEventListener('click', this.close, true)
+      document.removeEventListener('click', this.close)
     })
   },
   methods: {
@@ -82,13 +82,10 @@ export default {
         }
       }
     },
-    onElClick (e) {
-      e.stopPropagation()
-    },
     close (e) {
       const path = e.path || (e.composedPath && e.composedPath())
-      if (path.includes(this.$el)) return
-      this.$emit('close')
+      if (path.includes(this.$el.parentNode)) return
+      this.$emit('close', false)
     }
   }
 }
