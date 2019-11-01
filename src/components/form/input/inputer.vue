@@ -193,7 +193,7 @@ export default {
 .m-inputer{
   padding: 14px 0 5px 0;vertical-align: top;
   @border-color: rgba(0, 0, 0, .2);
-  display: block;position: relative;line-height: 1em;
+  position: relative;line-height: 1em;
   &-container{display: flex;position: relative;width: 100%;border: 1px solid @border-color;border-width: 0 0 1px;align-items: center;cursor: text;
   transition: all .2s;}
   label{box-sizing: border-box;}
@@ -249,8 +249,8 @@ export default {
   &-hint span{display: block;overflow: hidden;text-overflow: ellipsis;width: 100%;}
   &-count{display: block;height: 14px;margin-left: 5px;}
 
-  &-success{}
-  &-warning{}
+  // &-success{}
+  // &-warning{}
   &-error, &-error&-focus{
     .m-inputer{
       &-detail, &-label{color: @denger-color;}

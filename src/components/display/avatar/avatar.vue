@@ -5,8 +5,8 @@
     :style="size ? {
       width: `${size}px`,
       height: `${size}px`,
-      backgroundColor: background
-    } : ''"
+      backgroundColor
+    } : { backgroundColor }"
     :class="{'m-avatar-square': square}">
     <div v-if="!src" class="m-avatar-text" :style="{transform: `scale(${textScale})`}">
       <span :style="{fontSize, lineHeight: fontSize}"><slot></slot></span>
@@ -44,7 +44,7 @@ export default {
     fontSize () {
       return (this.size || 40) / 2.5 + 'px'
     },
-    background () {
+    backgroundColor () {
       if (this.src) return 'rgba(0,0,0,0.1)'
       const slot = this.$slots.default
       if (!slot || !slot.length) return 'rgba(0,0,0,0.1)'
