@@ -68,7 +68,7 @@ export default {
 <style lang="less">
 .m-avatar{
   position: relative;display: inline-flex;width:40px;height: 40px;align-items:center;justify-content: center;
-  background: rgba(0,0,0,.08);border-radius: 50%;
+  background: rgba(0,0,0,.08);border-radius: 50%;color: #fff;
   img{width: 100%;height: 100%;border-radius: 50%;}
   &-text{position: absolute;display: inline-block;width: 100%;height: 100%;display:flex;align-items:center;
   justify-content: center;white-space: nowrap;}
