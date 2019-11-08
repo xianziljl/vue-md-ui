@@ -1,3 +1,6 @@
+## 0.2.5
+- input 和 select 新增 slot： `prepend` 和 `append`
+
 ## 0.2.3
 - 修复 avatar 背景颜色问题
 

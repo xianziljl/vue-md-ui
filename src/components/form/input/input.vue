@@ -3,7 +3,10 @@
   <m-inputer
     v-bind="$attrs"
     v-on="$listeners"
-    ref="inputer"></m-inputer>
+    ref="inputer">
+    <slot slot="prepend" name="prepend"></slot>
+    <slot slot="append" name="append"></slot>
+  </m-inputer>
 </div>
 </template>
 

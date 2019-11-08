@@ -7,8 +7,10 @@
     ref="inputer"
     :size="size"
     :value="text"
-    :suffix-icon="optionShow ? 'arrow_drop_up' : 'arrow_drop_down'"
-  ></m-inputer>
+    :suffix-icon="optionShow ? 'arrow_drop_up' : 'arrow_drop_down'">
+    <slot slot="prepend" name="prepend"></slot>
+    <slot slot="append" name="append"></slot>
+  </m-inputer>
   <transition name="m-select-option">
     <div
       class="m-select-options"
