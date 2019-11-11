@@ -5,7 +5,8 @@
   tabindex="0"
   :class="{
     'm-checkbox-checked': isChecked,
-    'm-checkbox-disabled': disabled
+    'm-checkbox-disabled': disabled,
+    'm-checkbox-readonly': readonly
   }">
   <input
     type="checkbox"
@@ -24,6 +25,7 @@
 export default {
   name: 'm-checkbox',
   props: {
+    readonly: Boolean,
     checked: Boolean,
     value: [String, Number], // 在 checkbox-group 中使用
     disabled: Boolean
@@ -57,7 +59,7 @@ export default {
   computed: {
     listeners () {
       const vm = this
-      return Object.assign({}, vm.$listeners, {
+      return Object.assign({}, vm.$listeners, vm.readonly ? {} : {
         change: vm.onChange
       })
     }
@@ -102,6 +104,7 @@ export default {
   }
   &-disabled{cursor: default;}
   &-disabled &-icon{opacity: .5;}
-  &-disabled .m-ripple-animation{display: none;}
+  &-disabled, &-readonly{.m-ripple-animation{display: none;}}
+  &-readonly{cursor: auto;}
 }
 </style>

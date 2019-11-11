@@ -9,6 +9,11 @@
         <li v-for="item in 10" :key="item">xxxxxxxxxxxxxxxxxxxxx</li>
       </ul>
     </m-transition-expand>
+    <div>
+
+    <m-checkbox readonly checked></m-checkbox>
+    <m-radio readonly></m-radio>
+    </div>
     <!-- <router-view></router-view> -->
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
@@ -248,6 +253,7 @@ export default {
 <style lang="less">
 // body{margin: 0;font-size: 14px;}
 // .m-button{margin: 5px;}
+div{box-sizing: border-box;}
 .m-input{margin: 0 5px;width: 300px;}
 .m-avatar{margin: 10px;}
 .m-checkbox, .m-radio{margin-right: 10px;}

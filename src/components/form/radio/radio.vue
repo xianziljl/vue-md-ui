@@ -5,7 +5,8 @@
   tabindex="0"
   :class="{
     'm-radio-checked': isChecked,
-    'm-radio-disabled': disabled
+    'm-radio-disabled': disabled,
+    'm-radio-readonly': readonly
   }"
 >
   <input
@@ -25,6 +26,7 @@
 export default {
   name: 'm-radio',
   props: {
+    readonly: Boolean,
     checked: Boolean,
     value: [Number, String, Boolean],
     disabled: Boolean
@@ -51,7 +53,7 @@ export default {
   computed: {
     listeners () {
       const vm = this
-      return Object.assign({}, vm.$listeners, {
+      return Object.assign({}, vm.$listeners, vm.readonly ? {} : {
         change: vm.onChange
       })
     }
@@ -85,10 +87,10 @@ export default {
     .m-radio-icon:after{transform: scale(1);background: @primary-color;}
     .m-ripple-animation{background: fadeout(@primary-color, 80%);}
   }
-  &-disabled{
+  &-disabled, &-readonly{
     cursor: default;
-    .m-radio-icon{opacity: .5;}
     .m-ripple-animation{display: none;}
   }
+  &-disabled .m-radio-icon{opacity: .5;}
 }
 </style>

@@ -1,3 +1,6 @@
+## 0.2.6
+- checkbox 和 radio 新增 `readonly`
+
 ## 0.2.5
 - input 和 select 新增 slot： `prepend` 和 `append`
 
