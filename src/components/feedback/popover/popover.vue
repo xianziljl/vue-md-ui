@@ -35,14 +35,25 @@ export default {
       document.removeEventListener('click', this.close)
     })
   },
+  watch: {
+    show (show) {
+      if (show) {
+        this.$nextTick(() => {
+          this.style = this.getStyle()
+          this.arrowStyle = this.getArrowStyle()
+        })
+      }
+    }
+  },
   methods: {
     getStyle () {
       let pel = this.$el ? this.$el.parentElement : null
       if (!pel) return ''
+      const pelrect = pel.getBoundingClientRect()
       if (this.pos === 'left' || this.pos === 'right') {
         switch (this.align) {
           case 'center':
-            return `top: ${pel.clientHeight / 2 - this.$el.clientHeight / 2}px;`
+            return `top: ${pelrect.height / 2 - this.$el.clientHeight / 2}px;`
           case 'start':
             return 'top: 0;'
           case 'end':
@@ -51,7 +62,7 @@ export default {
       } else if (this.pos === 'top' || this.pos === 'bottom') {
         switch (this.align) {
           case 'center':
-            return `left: ${(pel.clientWidth - this.$el.clientWidth) / 2}px;`
+            return `left: ${(pelrect.width - this.$el.clientWidth) / 2}px;`
           case 'start':
             return 'left: 0;'
           case 'end':
@@ -62,23 +73,24 @@ export default {
     getArrowStyle () {
       let pel = this.$el ? this.$el.parentElement : null
       if (!pel) return ''
+      const pelrect = pel.getBoundingClientRect()
       if (this.pos === 'left' || this.pos === 'right') {
         switch (this.align) {
           case 'center':
             return `top: ${this.$el.clientHeight / 2 - 6}px;`
           case 'start':
-            return `top: ${pel.clientHeight / 2 - 6}px;`
+            return `top: ${pelrect.height / 2 - 6}px;`
           case 'end':
-            return `bottom: ${pel.clientHeight / 2 - 6}px;`
+            return `bottom: ${pelrect.height / 2 - 6}px;`
         }
       } else if (this.pos === 'top' || this.pos === 'bottom') {
         switch (this.align) {
           case 'center':
             return `left: ${this.$el.clientWidth / 2 - 6}px;`
           case 'start':
-            return `left: ${pel.clientWidth / 2 - 6}px;`
+            return `left: ${pelrect.width / 2 - 6}px;`
           case 'end':
-            return `right: ${pel.clientWidth / 2 - 6}px;`
+            return `right: ${pelrect.width / 2 - 6}px;`
         }
       }
     },

@@ -1,3 +1,6 @@
+## 0.2.7
+- 修复 popover 位置错误的问题
+
 ## 0.2.6
 - checkbox 和 radio 新增 `readonly`
 

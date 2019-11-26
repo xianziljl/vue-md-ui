@@ -14,6 +14,12 @@
     <m-checkbox readonly checked></m-checkbox>
     <m-radio readonly></m-radio>
     </div>
+    <span style="position:relative">
+      <span @click="pop=true">nihao</span>
+      <m-popover v-model="pop">
+        <div style="width: 200px;padding: 30px;">asdfa</div>
+      </m-popover>
+    </span>
     <!-- <router-view></router-view> -->
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
@@ -233,7 +239,8 @@ export default {
       ],
       modalShow: false,
       modalConfirmLoading: false,
-      loading: false
+      loading: false,
+      pop: false
     }
   },
   methods: {
