@@ -67,7 +67,7 @@ const Tooltip = {
       bind (el, { modifiers, arg, value }) {
         el._m_tooltip_content = value.toString()
         el._m_tooltip_pos = arg || 'auto'
-        el.addEventListener('DOMNodeRemoved', hideToolTip)
+        el.addEventListener('DOMNodeRemovedFromDocument', hideToolTip)
         el.addEventListener('mouseenter', showToolTip)
         el.addEventListener('mouseleave', hideToolTip)
       },

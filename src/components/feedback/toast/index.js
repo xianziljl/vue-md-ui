@@ -31,7 +31,7 @@ MToast.install = function (Vue) {
         methods: {
           actionClick () {
             vm.hide()
-            resolve()
+            resolve(this)
           },
           hide () {
             if (!vm) return

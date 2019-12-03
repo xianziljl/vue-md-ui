@@ -20,6 +20,7 @@ import Tree from './components/display/tree'
 import Divider from './components/display/divider'
 import Empty from './components/display/empty'
 import TransitionExpand from './components/display/transition-expand'
+import Pagination from './components/display/pagination'
 
 import Menu from './components/feedback/menu'
 import Modal from './components/feedback/modal'
@@ -43,6 +44,7 @@ const components = {
   Switcher,
   Icon,
   Card,
+  Pagination,
   Tabs,
   Avatar,
   Tag,

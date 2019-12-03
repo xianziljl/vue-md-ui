@@ -21,7 +21,10 @@
       </m-popover>
     </span>
 
-    <m-button v-if="!disabled" v-tooltip="'hello'" @click="disabled=!disabled">tooltip</m-button>
+    <div v-if="!disabled">
+      <m-button v-tooltip="'hello'" @click="disabled=!disabled">tooltip</m-button>
+    </div>
+    <m-pagination :total="100" :size="10"></m-pagination>
     <!-- <router-view></router-view> -->
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
