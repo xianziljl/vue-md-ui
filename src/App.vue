@@ -20,6 +20,8 @@
         <div style="width: 200px;padding: 30px;">asdfa</div>
       </m-popover>
     </span>
+
+    <m-button v-if="!disabled" v-tooltip="'hello'" @click="disabled=!disabled">tooltip</m-button>
     <!-- <router-view></router-view> -->
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
