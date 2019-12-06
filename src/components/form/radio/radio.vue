@@ -45,6 +45,10 @@ export default {
       default: null
     }
   },
+  created () {
+    if (!this.radioGroup) return
+    this.isChecked = this.radioGroup.value === this.value
+  },
   watch: {
     'radioGroup.value' (val) {
       this.isChecked = val === this.value

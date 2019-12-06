@@ -25,6 +25,15 @@
       <m-button v-tooltip="'hello'" @click="disabled=!disabled">tooltip</m-button>
     </div>
     <m-pagination :total="100" :size="10"></m-pagination>
+
+      <m-radio-group v-model="radioGroup" style="margin: 10px 0;">
+        <m-radio value="beijing">北京</m-radio>
+        <m-radio value="shanghai">上海</m-radio>
+        <m-radio value="shenzhen">深圳</m-radio>
+        <m-radio value="guangzhou">广州</m-radio>
+        <span>{{radioGroup}}</span>
+        <m-button flat type="primary" @click="radioGroup='guangzhou'">change</m-button>
+      </m-radio-group>
     <!-- <router-view></router-view> -->
     <!-- <div style="display:;">
       <m-button>Normal</m-button>
@@ -234,7 +243,7 @@ export default {
       checkbox: true,
       radio: false,
       checkboxgroup: [],
-      radioGroup: '',
+      radioGroup: 'beijing',
       switcher: false,
       select: '',
       disabled: false,
