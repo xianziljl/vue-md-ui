@@ -214,16 +214,16 @@
       @confirm="onModalConfirm">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
     </m-modal>
     {{select}}
-    <m-select outline v-model="select" label="选择框">
+
+    <m-tree></m-tree>-->
+    <m-select outline v-model="select" humble label="选择框">
       <m-select-option value="0">hello</m-select-option>
       <m-select-option value="1">121</m-select-option>
       <m-select-option value="2">1231242</m-select-option>
       <m-select-option value="3">4</m-select-option>
       <m-select-option value="4">234</m-select-option>
     </m-select>
-
-    <m-tree></m-tree>-->
-
+  <m-input humble></m-input>
   </div>
 </template>
 

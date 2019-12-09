@@ -1,3 +1,6 @@
+## 0.3.3
+- input select 等新增了 `humble` 属性，以用在无样式环境
+
 ## 0.3.2
 - 修复 radio-group 组件默认值的问题
 

@@ -6,7 +6,8 @@
   {
     'm-inputer-outline': outline,
     'm-inputer-disabled': disabled,
-    'm-inputer-focus': isFocus
+    'm-inputer-focus': isFocus,
+    'm-inputer-humble': humble
   }]">
   <div class="m-inputer-container">
     <slot name="prepend"></slot>
@@ -24,7 +25,7 @@
     <div class="m-inputer-box">
       <label
         class="m-inputer-label"
-        v-if="!singleLine"
+        v-if="!singleLine && !humble"
         :class="{'m-inputer-label-transform': labelTransform}"
         :style="{transform: labelTransform}"
       >{{label}}</label>
@@ -33,7 +34,7 @@
         v-on="listeners"
         :value="val"
         :disabled="disabled"
-        :placeholder="singleLine ? label : ''">
+        :placeholder="(singleLine || humble) ? label : ''">
     </div>
     <slot name="append"></slot>
     <span
@@ -47,7 +48,7 @@
       :class="{'m-inputer-icon-clickable': $listeners['click:suffix-icon']}"
       @click="$emit('click:suffix-icon')"
     >{{suffixIcon}}</m-icon>
-    <div v-if="!outline" class="m-inputer-underline"></div>
+    <div v-if="!outline && !humble" class="m-inputer-underline"></div>
     <m-icon
       class="m-inputer-clear-btn"
       v-if="clearable && !disabled"
@@ -88,7 +89,8 @@ export default {
     clearable: Boolean, // 清除按钮
     singleLine: Boolean, // 单行，无 label
     rules: Array, // 校验规则
-    checkOnInput: Boolean // 在输入时进行规则校验
+    checkOnInput: Boolean, // 在输入时进行规则校验
+    humble: Boolean
   },
   data () {
     return {
@@ -191,6 +193,7 @@ export default {
 
 <style lang="less">
 .m-inputer{
+  background: #eee;
   padding: 14px 0 5px 0;vertical-align: top;
   @border-color: rgba(0, 0, 0, .2);
   position: relative;line-height: 1em;
@@ -223,6 +226,10 @@ export default {
   }
   &-disabled{
     .m-inputer-container{border-style: dashed;}
+  }
+  &-humble{
+    padding: 0;
+    .m-inputer-container{border: none;height: auto;}
   }
   &-focus{
     .m-inputer-label{color: @primary-color;}
