@@ -193,7 +193,6 @@ export default {
 
 <style lang="less">
 .m-inputer{
-  background: #eee;
   padding: 14px 0 5px 0;vertical-align: top;
   @border-color: rgba(0, 0, 0, .2);
   position: relative;line-height: 1em;
