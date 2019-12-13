@@ -70,7 +70,6 @@ export default {
   },
   watch: {
     value (val) {
-      this.$emit('change', val)
       this.setValueText()
     }
   },

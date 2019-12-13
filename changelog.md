@@ -1,3 +1,6 @@
+## 0.3.5
+- 修复 select 组件 `change` 事件多次触发的问题
+
 ## 0.3.4
 - input select 等新增了 `humble` 属性，以用在无样式环境
 

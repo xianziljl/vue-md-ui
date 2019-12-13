@@ -216,7 +216,8 @@
     {{select}}
 
     <m-tree></m-tree>-->
-    <m-select outline v-model="select" humble label="选择框">
+    <m-button @click="select = ''">change</m-button>
+    <m-select outline v-model="select" humble label="选择框" @change="onChange">
       <m-select-option value="0">hello</m-select-option>
       <m-select-option value="1">121</m-select-option>
       <m-select-option value="2">1231242</m-select-option>
@@ -266,6 +267,9 @@ export default {
       setTimeout(() => {
         this.modalShow = this.modalConfirmLoading = false
       }, 2000)
+    },
+    onChange (v) {
+      console.log('change', v)
     }
   }
 }
