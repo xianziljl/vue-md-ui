@@ -1,3 +1,6 @@
+## 0.3.6
+- select 组件 options 显示时禁止页面滚动
+
 ## 0.3.5
 - 修复 select 组件 `change` 事件多次触发的问题
 

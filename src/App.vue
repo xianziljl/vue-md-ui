@@ -217,13 +217,17 @@
 
     <m-tree></m-tree>-->
     <m-button @click="select = ''">change</m-button>
-    <m-select outline v-model="select" humble label="选择框" @change="onChange">
-      <m-select-option value="0">hello</m-select-option>
-      <m-select-option value="1">121</m-select-option>
-      <m-select-option value="2">1231242</m-select-option>
-      <m-select-option value="3">4</m-select-option>
-      <m-select-option value="4">234</m-select-option>
-    </m-select>
+    <div style="height: 300px;overflow: auto;">
+      <div v-for="item in 10" :key="item">{{item}}</div>
+      <m-select outline v-model="select" humble label="选择框" @change="onChange">
+        <m-select-option value="0">hello</m-select-option>
+        <m-select-option value="1">121</m-select-option>
+        <m-select-option value="2">1231242</m-select-option>
+        <m-select-option value="3">4</m-select-option>
+        <m-select-option value="4">234</m-select-option>
+      </m-select>
+      <div v-for="item in 10" :key="item">{{item}}</div>
+    </div>
   <m-input humble></m-input>
   </div>
 </template>

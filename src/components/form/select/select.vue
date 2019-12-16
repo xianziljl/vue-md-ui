@@ -11,6 +11,7 @@
     <slot slot="prepend" name="prepend"></slot>
     <slot slot="append" name="append"></slot>
   </m-inputer>
+  <div v-if="optionShow" class="m-select-mask"></div>
   <transition name="m-select-option">
     <div
       class="m-select-options"
@@ -129,11 +130,12 @@ export default {
 .m-select{
   display: inline-block;vertical-align: middle;
   &-options{
-    position: fixed;z-index: 100;background: #fff;border-radius: @border-radius;padding: 10px 0;
+    position: fixed;z-index: 1000;background: #fff;border-radius: @border-radius;padding: 10px 0;
     min-width: 100px;box-shadow: 0 2px 5px rgba(0,0,0,.2), 0 4px 10px rgba(0,0,0,.1);
     max-width: 80%;overflow-y: auto;max-height: 100%;
   }
   .m-select-option-enter-active, .m-select-option-leave-active{opacity: 1;transition: opacity .2s linear;}
   .m-select-option-enter, .m-select-option-leave-to{opacity: 0;}
+  &-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 999;}
 }
 </style>
