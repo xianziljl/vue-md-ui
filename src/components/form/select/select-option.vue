@@ -7,7 +7,9 @@
     'm-select-option-on': on,
     'm-select-option-disabled': disabled
   }">
-  <slot></slot>
+  <slot name="prefix"></slot>
+  <div class="m-select-option-text"><slot></slot></div>
+  <slot name="suffix"></slot>
 </div>
 </template>
 
@@ -31,7 +33,6 @@ export default {
   methods: {
     onSelect () {
       if (this.disabled) return
-      this.select.text = this.$el.innerText
       this.select.$emit('change', this.value)
     }
   }
@@ -41,9 +42,10 @@ export default {
 <style lang="less">
 .m-select-option{
   position: relative;
-  padding: 0 15px;line-height: 1em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;min-height: 32px;
+  padding: 10px 15px;line-height: 1em;min-height: 32px;width: 100%;
   &:hover{background: rgba(0,0,0,0.06);}
-  &&-on{color: @primary-color;background: fadeout(@primary-color, 92%)}
-  &&-disabled{opacity: 0.6;pointer-events: none;}
+  &-on{color: @primary-color;background: fadeout(@primary-color, 92%)}
+  &-disabled{opacity: 0.6;pointer-events: none;}
+  &-text{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 }
 </style>

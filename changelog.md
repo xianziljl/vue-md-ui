@@ -1,3 +1,6 @@
+## 0.3.9
+- 修复 select-option 组件 `slot` 内额外内容显示在 select `input` 输入框的问题
+
 ## 0.3.6
 - select 组件 options 显示时禁止页面滚动
 

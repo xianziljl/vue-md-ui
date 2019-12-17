@@ -111,7 +111,9 @@ export default {
           this.text = ''
           return
         }
-        this.text = onItem.$el.innerText
+        const textElm = onItem.$slots.default[0].elm
+        const text = textElm.nodeType === 3 ? textElm.data : textElm.innerText
+        this.text = text.replace(/[\s\n]/g, '')
         this.optionShow = false
       })
     },
