@@ -80,9 +80,9 @@ export default {
     }
   },
   mounted () {
-    if (this.value) {
-      this.setValueText()
-    }
+    const { value } = this
+    if (value === null || value === undefined) return
+    this.setValueText()
   },
   methods: {
     showOptions () {

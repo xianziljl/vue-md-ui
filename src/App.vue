@@ -220,15 +220,15 @@
     <div style="height: 300px;overflow: auto;">
       <div v-for="item in 10" :key="item">{{item}}</div>
       <m-select outline v-model="select" humble label="选择框" @change="onChange">
-        <m-select-option value="0">
+        <m-select-option :value="0">
           <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
           这是一段很长的文本，这是一段很长的文本
           <span slot="suffix">asdfas</span>
         </m-select-option>
-        <m-select-option value="1">121</m-select-option>
-        <m-select-option value="2">1231242</m-select-option>
-        <m-select-option value="3">4</m-select-option>
-        <m-select-option value="4">234</m-select-option>
+        <m-select-option :value="1">121</m-select-option>
+        <m-select-option :value="2">1231242</m-select-option>
+        <m-select-option :value="3">4</m-select-option>
+        <m-select-option :value="4">234</m-select-option>
       </m-select>
       <div v-for="item in 10" :key="item * 11">{{item}}</div>
     </div>
@@ -254,7 +254,7 @@ export default {
       checkboxgroup: [],
       radioGroup: 'beijing',
       switcher: false,
-      select: '0',
+      select: 0,
       disabled: false,
       rules: [
         val => val.length >= 6 || '密码长度最少六位',
