@@ -233,6 +233,7 @@
       <div v-for="item in 10" :key="item * 11">{{item}}</div>
     </div>
   <m-input humble></m-input>
+  <m-button :loading="loading" @click="loading=!loading">Loading</m-button>
   </div>
 </template>
 

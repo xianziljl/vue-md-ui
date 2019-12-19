@@ -16,14 +16,12 @@
   ]"
   v-bind="$attrs"
   v-on="$listeners">
-  <transition name="m-button-loading">
-    <div v-if="loading" class="m-button-loading">
-      <m-progress
-        :size="16"
-        :type="type"
-        :inverted="(!flat && !outline && type !== '')"/>
-    </div>
-  </transition>
+  <div v-if="loading" class="m-button-loading">
+    <m-progress
+      :size="16"
+      :type="type"
+      :inverted="(!flat && !outline && type !== '')"/>
+  </div>
   <slot></slot>
 </button>
 </template>

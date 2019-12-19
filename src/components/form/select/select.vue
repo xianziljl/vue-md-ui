@@ -81,7 +81,7 @@ export default {
   },
   mounted () {
     const { value } = this
-    if (value === null || value === undefined) return
+    if (value === null || value === undefined || value === '' || isNaN(value)) return
     this.setValueText()
   },
   methods: {
