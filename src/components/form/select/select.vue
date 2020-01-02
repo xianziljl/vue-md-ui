@@ -5,7 +5,6 @@
     v-on="listeners"
     readonly
     ref="inputer"
-    :size="size"
     :value="text"
     :suffix-icon="optionShow ? 'arrow_drop_up' : 'arrow_drop_down'">
     <slot slot="prepend" name="prepend"></slot>
@@ -37,14 +36,13 @@ export default {
   components: { MInputer },
   inheritAttrs: false,
   props: {
-    value: [String, Number],
-    size: [Number]
+    value: [String, Number]
   },
   data () {
     return {
       left: 0,
       top: 0,
-      width: this.size,
+      width: 0,
       optionShow: false,
       text: ''
     }
@@ -81,7 +79,7 @@ export default {
   },
   mounted () {
     const { value } = this
-    if (value === null || value === undefined || value === '' || isNaN(value)) return
+    if (value === null || value === undefined || value === '' || (typeof value === 'number' && isNaN(value))) return
     this.setValueText()
   },
   methods: {

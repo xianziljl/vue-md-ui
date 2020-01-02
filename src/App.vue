@@ -219,16 +219,13 @@
     <m-button @click="select = ''">change</m-button>
     <div style="height: 300px;overflow: auto;">
       <div v-for="item in 10" :key="item">{{item}}</div>
-      <m-select outline v-model="select" humble label="选择框" @change="onChange">
-        <m-select-option :value="0">
+      <m-select outline v-model="select" single-line label="选择框" @change="onChange" size="small">
+        <m-select-option :value="-1">
           <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
           这是一段很长的文本，这是一段很长的文本
           <span slot="suffix">asdfas</span>
         </m-select-option>
-        <m-select-option :value="1">121</m-select-option>
-        <m-select-option :value="2">1231242</m-select-option>
-        <m-select-option :value="3">4</m-select-option>
-        <m-select-option :value="4">234</m-select-option>
+        <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
       </m-select>
       <div v-for="item in 10" :key="item * 11">{{item}}</div>
     </div>
@@ -255,8 +252,19 @@ export default {
       checkboxgroup: [],
       radioGroup: 'beijing',
       switcher: false,
-      select: 0,
+      select: 'industry',
       disabled: false,
+      nameArr: [
+        { key: 'industry', name: '行业' },
+        { key: 'expansion', name: '新建/扩容' },
+        { key: 'province', name: '省份' }
+      ],
+      nameMap: {
+        industry: '行业',
+        expansion: '新建/扩容',
+        province: '省份',
+        product: '产品线'
+      },
       rules: [
         val => val.length >= 6 || '密码长度最少六位',
         val => val.length <= 10 || '密码长度最大十位'
