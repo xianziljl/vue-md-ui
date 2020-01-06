@@ -9,7 +9,7 @@
     'm-inputer-focus': isFocus,
     'm-inputer-humble': humble
   }]">
-  <div class="m-inputer-container">
+  <label class="m-inputer-container">
     <slot name="prepend"></slot>
     <m-icon
       class="m-inputer-prefix-icon"
@@ -23,12 +23,12 @@
       v-if="prefix"
     >{{prefix}}</span>
     <div class="m-inputer-box">
-      <label
+      <div
         class="m-inputer-label"
         v-if="!singleLine && !humble"
         :class="{'m-inputer-label-transform': labelTransform}"
         :style="{transform: labelTransform}"
-      >{{label}}</label>
+      >{{label}}</div>
       <input
         v-bind="$attrs"
         v-on="listeners"
@@ -55,7 +55,7 @@
       size="20"
       @click="clear"
     >clear</m-icon>
-  </div>
+  </label>
   <div class="m-inputer-detail" v-if="counter || hint !== undefined">
     <span class="m-inputer-hint">
       <transition name="m-inputer-hint-show">
