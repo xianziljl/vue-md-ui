@@ -16,7 +16,6 @@
       class="m-select-options"
       v-if="optionShow"
       :style="{
-        width: `${width}px`,
         left: `${left}px`,
         top: `${top}px`
       }">
@@ -42,7 +41,6 @@ export default {
     return {
       left: 0,
       top: 0,
-      width: 0,
       optionShow: false,
       text: ''
     }
@@ -90,9 +88,9 @@ export default {
       const onItem = this.$el.querySelector('.m-select-option.m-select-option-on') || this.$el.querySelector('.m-select-option')
       const bodyHeight = window.innerHeight
 
-      this.width = this.$el.clientWidth
       let left = container.getBoundingClientRect().left
       let top = input.getBoundingClientRect().top
+      if (left + scroller.clientWidth > innerWidth) left = innerWidth - scroller.clientWidth - 10
       this.left = left
       scroller.scrollTop = onItem.offsetTop - scroller.clientHeight * (top / bodyHeight)
       top = top - onItem.offsetTop + scroller.scrollTop

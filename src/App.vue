@@ -216,19 +216,17 @@
     {{select}}
 
     <m-tree></m-tree>-->
-    <m-button @click="select = ''">change</m-button>
-    <div style="height: 300px;overflow: auto;">
-      <div v-for="item in 10" :key="item">{{item}}</div>
-      <m-select outline v-model="select" single-line label="选择框" @change="onChange" size="small">
-        <m-select-option :value="-1">
-          <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
-          这是一段很长的文本，这是一段很长的文本
-          <span slot="suffix">asdfas</span>
-        </m-select-option>
-        <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
-      </m-select>
-      <div v-for="item in 10" :key="item * 11">{{item}}</div>
-    </div>
+  <div>
+    <span style="display:inline-block;width: 500px;"></span>
+    <m-select outline v-model="select" single-line label="选择框" @change="onChange" size="small">
+      <m-select-option :value="-1">
+        <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
+        这是一段很长的文本，这是一段很长的文本
+        <span slot="suffix">asdfas</span>
+      </m-select-option>
+      <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
+    </m-select>
+  </div>
   <m-input humble></m-input>
   <m-button :loading="loading" @click="loading=!loading">Loading</m-button>
   </div>
