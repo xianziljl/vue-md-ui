@@ -72,6 +72,7 @@ export default {
         const index = checkboxGroup.value.indexOf(value)
         if (index < 0) checkboxGroup.value.push(value)
         else checkboxGroup.value.splice(index, 1)
+        this.checkboxGroup.$emit('change', checkboxGroup.value)
       }
       this.$emit('change', e.target.checked)
     }

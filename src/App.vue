@@ -229,6 +229,14 @@
   </div>
   <m-input humble></m-input>
   <m-button :loading="loading" @click="loading=!loading">Loading</m-button>
+      <m-checkbox-group :value="checkboxgroup" style="margin-top: 10px;" @change="log($event)">
+        <m-checkbox value="beijing">北京</m-checkbox>
+        <m-checkbox value="shanghai">上海</m-checkbox>
+        <m-checkbox value="shenzhen">深圳</m-checkbox>
+        <m-checkbox value="guangzhou">广州</m-checkbox>
+        <span>{{checkboxgroup}}</span>
+        <m-button flat type="primary" @click="checkboxgroup=['beijing', 'shenzhen']">Change Checkbox Group</m-button>
+      </m-checkbox-group>
   </div>
 </template>
 
@@ -247,7 +255,7 @@ export default {
       tab1: '1',
       checkbox: true,
       radio: false,
-      checkboxgroup: [],
+      checkboxgroup: ['shanghai'],
       radioGroup: 'beijing',
       switcher: false,
       select: 'industry',
@@ -274,6 +282,9 @@ export default {
     }
   },
   methods: {
+    log (e) {
+      console.log(e)
+    },
     onClick () {
       console.log('onclick')
     },
