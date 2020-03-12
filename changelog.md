@@ -1,3 +1,6 @@
+## 0.4.7
+- checkbox-group 增加 `change` 事件
+
 ## 0.4.6
 - 调整 select 选项列表宽度为自适应
 
