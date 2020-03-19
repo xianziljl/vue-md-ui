@@ -1,3 +1,6 @@
+## 0.4.8
+- icon 样式微调
+
 ## 0.4.7
 - checkbox-group 增加 `change` 事件
 
