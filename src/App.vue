@@ -238,8 +238,9 @@
         <m-button flat type="primary" @click="checkboxgroup=['beijing', 'shenzhen']">Change Checkbox Group</m-button>
       </m-checkbox-group>
     <m-button @click="modalShow=true">Modal</m-button>
+
     <m-modal v-if="modalShow" title="Modal" @cancel="modalShow=false">
-      <m-select outline v-model="select" single-line label="选择框" @change="onChange" size="small">
+      <m-select outline v-model="select" label="选择框" @change="onChange">
         <m-select-option :value="-1">
           <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
           这是一段很长的文本，这是一段很长的文本
@@ -247,6 +248,7 @@
         </m-select-option>
         <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
       </m-select>
+      <m-date-picker outline v-model="date" label="日期"></m-date-picker>
     </m-modal>
   </div>
 </template>
@@ -271,6 +273,7 @@ export default {
       switcher: false,
       select: 'industry',
       disabled: false,
+      date: '2020-02-02',
       nameArr: [
         { key: 'industry', name: '行业' },
         { key: 'expansion', name: '新建/扩容' },

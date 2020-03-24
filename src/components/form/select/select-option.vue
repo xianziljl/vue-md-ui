@@ -2,7 +2,7 @@
 <div
   class="m-select-option"
   v-ripple
-  @mousedown="onSelect"
+  @click="onSelect"
   :class="{
     'm-select-option-on': on,
     'm-select-option-disabled': disabled

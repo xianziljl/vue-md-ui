@@ -10,9 +10,16 @@
     <slot slot="prepend" name="prepend"></slot>
     <slot slot="append" name="append"></slot>
   </m-inputer>
-  <transition name="m-select-option">
+  <transition-group name="m-select-option">
+    <div
+      v-if="optionShow"
+      class="m-select-mask"
+      key="0"
+      :data-mid="mid"
+      @mousedown="hideOptions"></div>
     <div
       class="m-select-options"
+      key="1"
       v-if="optionShow"
       :data-mid="mid"
       :style="{
@@ -23,7 +30,7 @@
         <slot></slot>
       </div>
     </div>
-  </transition>
+  </transition-group>
 </div>
 </template>
 
@@ -60,7 +67,6 @@ export default {
           vm.$emit('focus', e)
         },
         blur: function (e) {
-          vm.optionShow = false
           vm.$emit('blur', e)
         }
       })
@@ -85,9 +91,11 @@ export default {
     showOptions () {
       const { mid } = this
       const scroller = document.querySelector(`.m-select-options[data-mid="${mid}"]`)
+      const mask = document.querySelector(`.m-select-mask[data-mid="${mid}"]`)
       const container = this.$el.querySelector('.m-inputer-container')
       const input = this.$el.querySelector('.m-inputer-container input')
       const onItem = scroller.querySelector('.m-select-option.m-select-option-on') || scroller.querySelector('.m-select-option')
+      document.body.appendChild(mask)
       document.body.appendChild(scroller)
       const bodyHeight = window.innerHeight
 
@@ -102,10 +110,13 @@ export default {
       if (top + scroller.clientHeight > bodyHeight) top = bodyHeight - scroller.clientHeight
       this.top = top
     },
+    hideOptions () {
+      this.optionShow = false
+    },
     setValueText () {
       this.optionShow = true
       this.$nextTick(() => {
-        const onItem = this.$children.find(item => item.on)
+        const onItem = this.$children[1].$children.find(item => item.on)
         if (!onItem) {
           this.optionShow = false
           this.text = ''
@@ -138,6 +149,6 @@ export default {
   }
   .m-select-option-enter-active, .m-select-option-leave-active{opacity: 1;transition: opacity .2s linear;}
   .m-select-option-enter, .m-select-option-leave-to{opacity: 0;}
-  &-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 9999;}
+  &-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 9998;}
 }
 </style>

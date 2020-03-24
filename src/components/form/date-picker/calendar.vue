@@ -289,7 +289,6 @@ export default {
       }
     },
     choiceDay (d) {
-      console.log(d)
       let {year, month, formater} = this
       if (d && this.dateIsValid({year, month, day: d})) {
         this.day = d
@@ -347,6 +346,7 @@ export default {
   cursor: pointer; }
 .m-datepicker-panel .m-datepicker-tb,
 .m-datepicker-panel .m-datepicker-tb2 {
+  width: 100%;
   border-collapse: collapse;
   text-align: center; }
 .m-datepicker-panel .m-datepicker-tb thead,

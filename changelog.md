@@ -1,3 +1,7 @@
+## 0.5.0
+- 优化 select 显示与关闭的触发条件
+- 修复 date picker 组件与 modal 组件同时使用时显示不全的问题
+
 ## 0.4.9
 - 修复 select 组件与 modal 组件同时使用时 select-option 错位问题
 

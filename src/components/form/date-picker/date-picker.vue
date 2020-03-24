@@ -6,10 +6,19 @@
     readonly
     v-on="listeners"
   ></m-inputer>
-  <transition v-if="panelShow" name="m-date-panel">
+  <transition-group name="m-date-panel">
     <div
+      class="m-date-picker-mask"
+      v-if="panelShow"
+      key="0"
+      :data-mid="mid"
+      @mousedown="hidePanel"></div>
+    <div
+      v-if="panelShow"
       class="m-date-picker-panel"
-      :class="{'m-date-picker-panel-ontop': panelShowOnTop}"
+      :data-mid="mid"
+      :style="{ left: left + 'px', top: top + 'px' }"
+      key="1"
       ref="panel">
       <div class="m-date-picker-ctn">
         <m-date-picker-calendar
@@ -28,7 +37,7 @@
         <m-button type="primary" flat @click="confirm">确定</m-button>
       </div>
     </div>
-  </transition>
+  </transition-group>
 </div>
 </template>
 
@@ -58,10 +67,13 @@ export default {
   },
   data () {
     return {
+      mid: Math.random().toString(16).substr(2),
       panelShow: false,
       panelShowOnTop: false,
       defaultValue: this.value,
-      val: this.value
+      val: this.value,
+      left: 0,
+      top: 0
     }
   },
   computed: {
@@ -84,26 +96,26 @@ export default {
       this.val = val
     }
   },
-  mounted () {
-    document.addEventListener('mousedown', this.hidePanel)
-    this.$once('hook:beforeDestroy', () => {
-      document.removeEventListener('mousedown', this.hidePanel)
-    })
-  },
   methods: {
     showPanel () {
+      const { mid } = this
       this.defaultValue = this.value
-      const top = this.$el.getBoundingClientRect().top
+      const panel = document.querySelector(`.m-date-picker-panel[data-mid="${mid}"]`)
+      const mask = document.querySelector(`.m-date-picker-mask[data-mid="${mid}"]`)
+      document.body.appendChild(panel)
+      document.body.appendChild(mask)
+      const rect = this.$el.getBoundingClientRect()
+      const { left, top } = rect
       const elHeight = this.$el.clientHeight
-      const panelHeight = this.$refs.panel.clientHeight
-      const windowHeight = window.innerHeight
-      if ((top + elHeight + panelHeight) >= windowHeight) this.panelShowOnTop = true
-      else this.panelShowOnTop = false
+      const { clientWidth, clientHeight } = this.$refs.panel
+      this.left = left
+      this.top = elHeight + top
+      const { innerHeight, innerWidth } = window
+      if ((this.top + clientHeight) >= innerHeight) this.top = top - clientHeight
+      if ((this.left + clientWidth) >= innerWidth) this.left = innerWidth - clientWidth
     },
     hidePanel (e) {
-      const el = this.$el
-      const path = e.path || (e.composedPath && e.composedPath())
-      if (el && !path.includes(el)) this.panelShow = false
+      this.panelShow = false
     },
     onChange (e) {
       this.$emit('change', e)
@@ -125,11 +137,11 @@ export default {
   position: relative;overflow: visible;
   &-panel{
     display: flex;flex-direction: column;
-    position: absolute;top: 100%;z-index: 40;
+    position: fixed;top: 100%;z-index: 9999;
     background: #fff;min-width: 250px;min-height: 220px;border-radius: @border-radius;padding: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,.2), 0 4px 10px rgba(0,0,0,.1);
-    &-ontop{bottom: 100%;top: auto;}
   }
+  &-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 9998;}
   &-ctn{flex: 1;}
   &-btns{display: flex;
     span{flex: 1}
