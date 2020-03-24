@@ -1,3 +1,6 @@
+## 0.4.9
+- 修复 select 组件与 modal 组件同时使用时 select-option 错位问题
+
 ## 0.4.8
 - icon 样式微调
 

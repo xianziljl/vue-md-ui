@@ -10,11 +10,11 @@
     <slot slot="prepend" name="prepend"></slot>
     <slot slot="append" name="append"></slot>
   </m-inputer>
-  <div v-if="optionShow" class="m-select-mask"></div>
   <transition name="m-select-option">
     <div
       class="m-select-options"
       v-if="optionShow"
+      :data-mid="mid"
       :style="{
         left: `${left}px`,
         top: `${top}px`
@@ -39,6 +39,7 @@ export default {
   },
   data () {
     return {
+      mid: Math.random().toString(16).substr(2),
       left: 0,
       top: 0,
       optionShow: false,
@@ -82,14 +83,17 @@ export default {
   },
   methods: {
     showOptions () {
-      const scroller = this.$el.querySelector('.m-select-options')
+      const { mid } = this
+      const scroller = document.querySelector(`.m-select-options[data-mid="${mid}"]`)
       const container = this.$el.querySelector('.m-inputer-container')
       const input = this.$el.querySelector('.m-inputer-container input')
-      const onItem = this.$el.querySelector('.m-select-option.m-select-option-on') || this.$el.querySelector('.m-select-option')
+      const onItem = scroller.querySelector('.m-select-option.m-select-option-on') || scroller.querySelector('.m-select-option')
+      document.body.appendChild(scroller)
       const bodyHeight = window.innerHeight
 
       let left = container.getBoundingClientRect().left
       let top = input.getBoundingClientRect().top
+      // console.log(top)
       if (left + scroller.clientWidth > innerWidth) left = innerWidth - scroller.clientWidth - 10
       this.left = left
       scroller.scrollTop = onItem.offsetTop - scroller.clientHeight * (top / bodyHeight)
@@ -128,12 +132,12 @@ export default {
 .m-select{
   display: inline-block;vertical-align: middle;
   &-options{
-    position: fixed;z-index: 1000;background: #fff;border-radius: @border-radius;padding: 10px 0;
+    position: fixed;z-index: 9999;background: #fff;border-radius: @border-radius;padding: 10px 0;
     min-width: 100px;box-shadow: 0 2px 5px rgba(0,0,0,.2), 0 4px 10px rgba(0,0,0,.1);
     max-width: 80%;overflow-y: auto;max-height: 100%;
   }
   .m-select-option-enter-active, .m-select-option-leave-active{opacity: 1;transition: opacity .2s linear;}
   .m-select-option-enter, .m-select-option-leave-to{opacity: 0;}
-  &-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 999;}
+  &-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 9999;}
 }
 </style>

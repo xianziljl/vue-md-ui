@@ -218,14 +218,14 @@
     <m-tree></m-tree>-->
   <div>
     <span style="display:inline-block;width: 500px;"></span>
-    <m-select outline v-model="select" single-line label="选择框" @change="onChange" size="small">
+    <!-- <m-select outline v-model="select" single-line label="选择框" @change="onChange" size="small">
       <m-select-option :value="-1">
         <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
         这是一段很长的文本，这是一段很长的文本
         <span slot="suffix">asdfas</span>
       </m-select-option>
       <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
-    </m-select>
+    </m-select> -->
   </div>
   <m-input humble></m-input>
   <m-button :loading="loading" @click="loading=!loading">Loading</m-button>
@@ -237,6 +237,17 @@
         <span>{{checkboxgroup}}</span>
         <m-button flat type="primary" @click="checkboxgroup=['beijing', 'shenzhen']">Change Checkbox Group</m-button>
       </m-checkbox-group>
+    <m-button @click="modalShow=true">Modal</m-button>
+    <m-modal v-if="modalShow" title="Modal" @cancel="modalShow=false">
+      <m-select outline v-model="select" single-line label="选择框" @change="onChange" size="small">
+        <m-select-option :value="-1">
+          <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
+          这是一段很长的文本，这是一段很长的文本
+          <span slot="suffix">asdfas</span>
+        </m-select-option>
+        <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
+      </m-select>
+    </m-modal>
   </div>
 </template>
 
@@ -263,7 +274,11 @@ export default {
       nameArr: [
         { key: 'industry', name: '行业' },
         { key: 'expansion', name: '新建/扩容' },
-        { key: 'province', name: '省份' }
+        { key: 'province1', name: '省份1' },
+        { key: 'province2', name: '省份2' },
+        { key: 'province3', name: '省份3' },
+        { key: 'province4', name: '省份4' },
+        { key: 'province5', name: '省份5' }
       ],
       nameMap: {
         industry: '行业',
