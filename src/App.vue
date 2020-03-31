@@ -239,7 +239,8 @@
       </m-checkbox-group>
     <m-button @click="modalShow=true">Modal</m-button>
 
-    <m-modal v-if="modalShow" title="Modal" @cancel="modalShow=false">
+    <m-modal v-if="modalShow" @cancel="modalShow=false">
+      <template #title>Title</template>
       <m-select outline v-model="select" label="选择框" @change="onChange">
         <m-select-option :value="-1">
           <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>

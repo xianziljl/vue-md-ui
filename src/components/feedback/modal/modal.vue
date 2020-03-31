@@ -3,9 +3,10 @@
   <div v-if="show" class="m-modal" :tabindex="maskClick && !isLoading ? 1 : ''" @keydown.esc="$emit('cancel')">
     <div class="m-modal-bg" @click="onMaskClick"></div>
     <div class="m-modal-container" :style="maxWidth ? { maxWidth } : ''">
-      <h2 class="m-modal-title" v-if="title">
+      <h2 class="m-modal-title" v-if="title">{{title}}</h2>
+      <div class="m-modal-title" v-else>
         <slot name="title">{{title}}</slot>
-      </h2>
+      </div>
       <div class="m-modal-content" :class="{'m-modal-no-title': !title}">
         <slot>{{content}}</slot>
       </div>
