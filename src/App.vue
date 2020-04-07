@@ -251,6 +251,9 @@
       </m-select>
       <m-date-picker outline v-model="date" label="日期"></m-date-picker>
     </m-modal>
+    <m-select label="选择框" v-model="select">
+      <!-- <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option> -->
+    </m-select>
   </div>
 </template>
 

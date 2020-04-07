@@ -27,7 +27,9 @@
         top: `${top}px`
       }">
       <div class="m-select-options-list">
-        <slot></slot>
+        <slot>
+          <div class="m-select-empty">无可选项</div>
+        </slot>
       </div>
     </div>
   </transition-group>
@@ -101,11 +103,12 @@ export default {
 
       let left = container.getBoundingClientRect().left
       let top = input.getBoundingClientRect().top
-      // console.log(top)
+
       if (left + scroller.clientWidth > innerWidth) left = innerWidth - scroller.clientWidth - 10
       this.left = left
-      scroller.scrollTop = onItem.offsetTop - scroller.clientHeight * (top / bodyHeight)
-      top = top - onItem.offsetTop + scroller.scrollTop
+      let onItemOffset = onItem ? onItem.offsetTop : 0
+      scroller.scrollTop = onItemOffset - scroller.clientHeight * (top / bodyHeight)
+      top = top - onItemOffset + scroller.scrollTop
       if (top < 0) top = 0
       if (top + scroller.clientHeight > bodyHeight) top = bodyHeight - scroller.clientHeight
       this.top = top
@@ -150,5 +153,6 @@ export default {
   .m-select-option-enter-active, .m-select-option-leave-active{opacity: 1;transition: opacity .2s linear;}
   .m-select-option-enter, .m-select-option-leave-to{opacity: 0;}
   &-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 9998;}
+  &-empty{padding-left: 10px;opacity: 0.5;}
 }
 </style>
