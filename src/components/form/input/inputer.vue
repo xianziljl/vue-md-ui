@@ -106,6 +106,8 @@ export default {
     value (val) {
       this.val = val
       this.getLabelTransform()
+      // 在 readonly 时也能检查
+      if (this.readonly) this.ruleCheck()
     },
     isFocus (val) {
       this.getLabelTransform()
