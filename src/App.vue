@@ -227,7 +227,7 @@
       <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
     </m-select> -->
   </div>
-  <m-input></m-input>
+  <m-input v-model="ruleTest" :rules="rulerequire"></m-input>
   <m-button :loading="loading" @click="loading=!loading">Loading</m-button>
       <m-checkbox-group :value="checkboxgroup" style="margin-top: 10px;" @change="log($event)">
         <m-checkbox value="beijing">北京</m-checkbox>
@@ -240,7 +240,9 @@
     <m-button @click="modalShow=true">Modal</m-button>
 
     <m-form>
+      <m-input label="input" v-model="input" :rules="rulerequire"></m-input>
       <m-input v-model="input" readonly :rules="rulerequire"></m-input>
+      <br>
       <m-select outline v-model="select" label="选择框" @change="onChange" :rules="rulerequire">
         <m-select-option :value="-1">
           <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
@@ -249,9 +251,13 @@
         </m-select-option>
         <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
       </m-select>
-      <m-date-picker outline v-model="date" label="日期"></m-date-picker>
-      <m-button form-type="submit">submit</m-button>
+      <br>
+      <m-button form-type="submit" type="primary">submit</m-button>
+      <m-button form-type="reset" outline>reset</m-button>
       <m-button @click="input = 'sss'">input</m-button>
+      <m-button @click="input = ''">clear input</m-button>
+      <m-button @click="select = 'industry'">select</m-button>
+      <m-button @click="select = ''">clear select</m-button>
     </m-form>
   </div>
 </template>

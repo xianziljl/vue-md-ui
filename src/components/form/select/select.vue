@@ -77,6 +77,7 @@ export default {
   watch: {
     value (val) {
       this.setValueText()
+      this.ruleCheck()
     }
   },
   provide () {
@@ -117,6 +118,11 @@ export default {
       this.optionShow = false
     },
     setValueText () {
+      const { value } = this
+      if (!value) {
+        this.text = ''
+        return
+      }
       this.optionShow = true
       this.$nextTick(() => {
         const onItem = this.$children[1].$children.find(item => item.on)

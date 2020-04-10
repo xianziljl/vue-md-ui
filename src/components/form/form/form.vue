@@ -14,11 +14,31 @@ export default {
     listeners () {
       const vm = this
       return Object.assign({}, vm.$listeners, {
-        submit: vm.submit
+        submit: vm.submit,
+        reset: vm.reset
       })
     }
   },
   methods: {
+    getInputers () {
+      const inputers = []
+      function getInputer (children) {
+        children.forEach(child => {
+          const { _componentTag } = child.$options
+          if (_componentTag === 'm-inputer') inputers.push(child)
+          else getInputer(child.$children)
+        })
+      }
+      getInputer(this.$children)
+      return inputers
+    },
+    reset (e) {
+      e.preventDefault()
+      const inputers = this.getInputers()
+      inputers.forEach(inputer => {
+        inputer.clear()
+      })
+    },
     submit (e) {
       e.preventDefault()
       let checkResult = true

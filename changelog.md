@@ -1,3 +1,6 @@
+## 0.5.5
+- form 组件 `form-type` 新增 `reset`
+
 ## 0.5.4
 - 修复 select 组件规则检查无法触发的问题
 - 修复 input 组件在状态为 `readonly` 时，规则检查无效的问题
