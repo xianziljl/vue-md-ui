@@ -227,7 +227,7 @@
       <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
     </m-select> -->
   </div>
-  <m-input humble></m-input>
+  <m-input></m-input>
   <m-button :loading="loading" @click="loading=!loading">Loading</m-button>
       <m-checkbox-group :value="checkboxgroup" style="margin-top: 10px;" @change="log($event)">
         <m-checkbox value="beijing">北京</m-checkbox>
@@ -239,9 +239,9 @@
       </m-checkbox-group>
     <m-button @click="modalShow=true">Modal</m-button>
 
-    <m-modal v-if="modalShow" @cancel="modalShow=false">
-      <template #title>Title</template>
-      <m-select outline v-model="select" label="选择框" @change="onChange">
+    <m-form>
+      <m-input v-model="input" readonly :rules="rulerequire"></m-input>
+      <m-select outline v-model="select" label="选择框" @change="onChange" :rules="rulerequire">
         <m-select-option :value="-1">
           <m-icon size="18" slot="prefix" style="margin-right: 10px;">favorite</m-icon>
           这是一段很长的文本，这是一段很长的文本
@@ -250,10 +250,9 @@
         <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option>
       </m-select>
       <m-date-picker outline v-model="date" label="日期"></m-date-picker>
-    </m-modal>
-    <m-select label="选择框" v-model="select">
-      <!-- <m-select-option v-for="(item) in nameArr" :value="item.key" :key="item.key">{{item.name}}</m-select-option> -->
-    </m-select>
+      <m-button form-type="submit">submit</m-button>
+      <m-button @click="input = 'sss'">input</m-button>
+    </m-form>
   </div>
 </template>
 
@@ -275,7 +274,7 @@ export default {
       checkboxgroup: ['shanghai'],
       radioGroup: 'beijing',
       switcher: false,
-      select: 'industry',
+      select: '',
       disabled: false,
       date: '2020-02-02',
       nameArr: [
@@ -297,6 +296,7 @@ export default {
         val => val.length >= 6 || '密码长度最少六位',
         val => val.length <= 10 || '密码长度最大十位'
       ],
+      rulerequire: [val => !!val || '此项为必填'],
       modalShow: false,
       modalConfirmLoading: false,
       loading: false,
@@ -317,7 +317,7 @@ export default {
       }, 2000)
     },
     onChange (v) {
-      console.log('change', v)
+      // console.log('change', v)
     }
   }
 }

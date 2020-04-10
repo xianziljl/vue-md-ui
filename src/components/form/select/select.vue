@@ -134,7 +134,6 @@ export default {
     clear () {
       this.$emit('change', '')
       this.$refs.inputer.clear()
-      if (this.rules) this.ruleCheck()
     },
     ruleCheck () {
       return this.$refs.inputer.ruleCheck(this.value)

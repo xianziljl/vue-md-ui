@@ -85,6 +85,7 @@ export default {
     suffixIcon: String, // 插入内部之后图标
     counter: [String, Number], // 字数提示
     disabled: Boolean, // 禁用
+    readonly: Boolean,
     outline: Boolean, // 使用边框而不是下划线
     clearable: Boolean, // 清除按钮
     singleLine: Boolean, // 单行，无 label
@@ -107,6 +108,7 @@ export default {
       this.val = val
       this.getLabelTransform()
       // 在 readonly 时也能检查
+      console.log(111, this.readonly)
       if (this.readonly) this.ruleCheck()
     },
     isFocus (val) {
@@ -139,7 +141,6 @@ export default {
         this.labelTransform = ''
         return
       }
-      // console.log('xxx')
       const input = this.$el.querySelector('.m-inputer-box')
       const container = this.$el.querySelector('.m-inputer-container')
       this.labelTransform = `translate3d(${-(this.outline ? input.offsetLeft - 10 : input.offsetLeft)}px, -${container.clientHeight / 2}px, 0) scale(0.88)`

@@ -34,6 +34,7 @@ export default {
     onSelect () {
       if (this.disabled) return
       this.select.$emit('change', this.value)
+      this.$nextTick(this.select.ruleCheck)
     }
   }
 }
