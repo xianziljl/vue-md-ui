@@ -39,7 +39,7 @@ export default {
     .m-tag{
       &-close-btn{font-size: 16px;}
     }
-    .m-avatar{width: 20px;height: 20px;margin: 0 5px 0 -7px;}
+    .m-avatar{width: 20px;height: 20px;margin: 0 5px 0 -6px;}
   }
 }
 </style>
