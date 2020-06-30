@@ -49,8 +49,8 @@ export default {
   data () {
     return {
       mid: Math.random().toString(16).substr(2),
-      left: 0,
-      top: 0,
+      left: window.innerWidth,
+      top: window.innerHeight,
       optionShow: false,
       text: ''
     }
