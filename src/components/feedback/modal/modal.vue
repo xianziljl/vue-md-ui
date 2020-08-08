@@ -93,7 +93,7 @@ export default {
   position: fixed;width: 100%;height: 100%;left: 0;top: 0;z-index: 9998;
   &-bg{position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0, 0, 0, 0.5);transition: background .3s;}
   &-container{display: flex;flex-direction: column;min-width: 200px;min-height: 100px;max-width: 90%;max-height: 90%;background: #fff;z-index: 10;
-    border-radius: 10px;box-shadow: 0 10px 20px rgba(0, 0, 0, .2);transform: scale(1);opacity: 1;transition: transform .3s, opacity .15s;}
+    border-radius: 10px;box-shadow: 0 10px 20px rgba(0, 0, 0, .2);opacity: 1;transition: transform .3s, opacity .15s;}
   &-title{margin: 0;padding: 24px 24px 12px;font-weight: normal;font-size: 20px;}
   &-content{padding: 12px 24px;flex: 1;overflow-y: auto;}
   &-no-title{padding-top: 24px;}

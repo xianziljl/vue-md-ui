@@ -201,18 +201,7 @@
     <m-switcher v-model="loading" style="float:right"></m-switcher>
     <div style="height: 3000px;"></div> -->
     <!-- <m-button outline :loading="loading" type="primary" @click="modalShow=!modalShow">Show Modal</m-button>
-    <m-modal
-      v-if="modalShow"
-      title="Use Google's location service?"
-      max-width="260px"
-      mask-click
-      :confirm-loading="modalConfirmLoading"
-      confirm-type="primary"
-      confirm-text="AGREE"
-      cancel-text="DISAGREE"
-      @cancel="modalShow=false"
-      @confirm="onModalConfirm">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-    </m-modal>
+
     {{select}}
 
     <m-tree></m-tree>-->
@@ -238,6 +227,18 @@
         <m-button flat type="primary" @click="checkboxgroup=['beijing', 'shenzhen']">Change Checkbox Group</m-button>
       </m-checkbox-group>
     <m-button @click="modalShow=true">Modal</m-button>
+    <m-modal
+      v-if="modalShow"
+      title="Use Google's location service?"
+      max-width="260px"
+      mask-click
+      :confirm-loading="modalConfirmLoading"
+      confirm-type="primary"
+      confirm-text="AGREE"
+      cancel-text="DISAGREE"
+      @cancel="modalShow=false"
+      @confirm="onModalConfirm">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+    </m-modal>
 
     <m-form>
       <m-input label="input" v-model="input" :rules="rulerequire"></m-input>
