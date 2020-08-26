@@ -1,7 +1,7 @@
 <template>
 <div class="m-date-picker-calendar">
   <!--日期选择-->
-  <div class="m-datepicker-panel" style="position: static;">
+  <div class="m-datepicker-panel" style="position: static;" :style="{visibility: monthPanelIsShow ? 'hidden' : 'visible'}">
     <div class="m-datepicker-month">
       <m-button flat round icon @click="prevMonth">keyboard_arrow_left</m-button>
       <span class="m-datepicker-btn" @click="startChoiceMonth">{{ year }}年 {{ month+1 }}月</span>
