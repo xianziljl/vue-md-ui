@@ -133,7 +133,7 @@ export default {
   },
   methods: {
     getLabelTransform () {
-      if (!(this.isFocus || this.val) || !this.$el) {
+      if (!this.isFocus || !this.$el || this.val === undefined || this.val === '' || this.val === null || isNaN(this.val)) {
         this.labelTransform = ''
         return
       }
