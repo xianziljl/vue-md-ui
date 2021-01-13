@@ -133,10 +133,12 @@ export default {
   },
   methods: {
     getLabelTransform () {
-      if (!this.isFocus || !this.$el || this.val === undefined || this.val === '' || this.val === null || isNaN(this.val)) {
+      const { isFocus, val, $el } = this
+      if ((!isFocus || !$el) && (val === undefined || val === '' || val === null || (!val && isNaN(val)))) {
         this.labelTransform = ''
         return
       }
+      console.log(1)
       const input = this.$el.querySelector('.m-inputer-box')
       const container = this.$el.querySelector('.m-inputer-container')
       this.labelTransform = `translate3d(${-(this.outline ? input.offsetLeft - 10 : input.offsetLeft)}px, -${container.clientHeight / 2}px, 0) scale(0.88)`

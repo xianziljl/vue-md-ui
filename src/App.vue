@@ -271,7 +271,7 @@ export default {
     return {
       treeData,
       transitionExpand: false,
-      input: '',
+      input: 0,
       ruleTest: '',
       showPwd: false,
       tab: '2',
